@@ -1,0 +1,202 @@
+[
+  {
+    "product_id": 1,
+    "product_price": 1.24,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A4%CE%9F%CE%9C%CE%91%CE%A4%CE%95%CE%A3_%CE%91%CE%A0%CE%9F%CE%A6%CE%9B_%CE%9F%CE%9B%CE%9F%CE%9A%CE%9B%CE%97%CE%A1%CE%95%CE%A3_%CE%9A%CE%A5%CE%9A%CE%9D%CE%9F%CE%A3400%CE%93%CE%A1.jpg"
+  },
+  {
+    "product_id": 2,
+    "product_price": 1.43,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Elite_%CE%A6%CF%81%CF%85%CE%B3%CE%B1%CE%BD%CE%B9%CE%AD%CF%82_%CE%9F%CE%BB%CE%B9%CE%BA%CE%AE%CF%82_%CE%86%CE%BB%CE%B5%CF%83%CE%B7%CF%82_180%CE%B3%CF%81.jpg"
+  },
+  {
+    "product_id": 3,
+    "product_price": 1.68,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A3%CE%B1%CF%81%CE%B4%CE%B5%CE%BB%CE%B1_Trata_%CE%9B%CE%B1%CE%B4%CE%B9%CE%BF%CF%8D_100%CE%B3%CF%81.jpg"
+  },
+  {
+    "product_id": 4,
+    "product_price": 3.21,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A4%CE%A5%CE%A1%CE%99_%CE%97%CE%9C%CE%99%CE%A3%CE%9A%CE%9B%CE%97%CE%A1%CE%9F_%CE%9C%CE%91%CE%9A%CE%95%CE%94%CE%9F%CE%9D%CE%99%CE%9A%CE%9F_%CE%9C%CE%95%CE%92%CE%93%CE%91%CE%9B_420_gr.jpg"
+  },
+  {
+    "product_id": 5,
+    "product_price": 1.67,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A7%CF%89%CF%81%CE%B9%CF%8C_%CE%9C%CE%B1%CF%81%CE%B3%CE%B1%CF%81%CE%AF%CE%BD%CE%B7_%CE%9C%CE%B5_%CE%95%CE%BB%CE%B1%CE%B9%CF%8C%CE%BB%CE%B1%CE%B4%CE%BF_250gr.jpg"
+  },
+  {
+    "product_id": 6,
+    "product_price": 0.9,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9B%CE%B5%CF%85%CE%BA%CE%B1%CE%BD%CF%84%CE%B9%CE%BA%CE%BF_%CE%95%CF%85%CF%81%CE%B7%CE%BA%CE%B1_60%CE%93%CE%A1.jpg"
+  },
+  {
+    "product_id": 7,
+    "product_price": 0.62,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Sprite_330ML_%CE%9C%CE%B5%CF%84_%CE%9A%CE%BF%CF%85%CF%84.jpg"
+  },
+  {
+    "product_id": 8,
+    "product_price": 0.72,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9E%CF%8D%CE%B4%CE%B9_%CE%9B%CE%B5%CF%85%CE%BA%CE%BF%CF%8D_%CE%9A%CF%81%CE%B1%CF%83%CE%B9%CE%BF%CF%8D_400ml_%CE%9C%CE%B5%CF%84%CE%AD%CF%89%CF%81%CE%B1.jpg"
+  },
+  {
+    "product_id": 9,
+    "product_price": 2.1,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A4%CE%9F%CE%A1%CE%A4%CE%95%CE%9B%CE%99%CE%9D_%CE%93%CE%95%CE%9C%CE%99%CE%A3_%CE%A4%CE%A5%CE%A1%CE%99%CE%A9%CE%9D_%CE%9C%CE%95%CE%9B%CE%99%CE%A3%CE%A3%CE%91_250%CE%93%CE%A1.jpg"
+  },
+  {
+    "product_id": 10,
+    "product_price": 2.12,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A7%CE%BB%CF%89%CF%81%CE%AF%CE%BD%CE%B7_Klinex_Ultra_Lemon.jpg"
+  },
+  {
+    "product_id": 11,
+    "product_price": 2.6,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A4%CE%A3%CE%9F%CE%A5%CE%A1%CE%95%CE%9A%CE%99_%CE%A3%CE%A4%CE%95%CE%A1%CE%93%CE%99%CE%9F%CE%A5_380%CE%93%CE%A1.jpg"
+  },
+  {
+    "product_id": 12,
+    "product_price": 8.4,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Sani_%CE%A0%CE%AC%CE%BD%CE%B1_%CE%91%CE%BA%CF%81%CE%B1%CF%84_Sensitive_N4_Xlarge_10%CF%84.jpg"
+  },
+  {
+    "product_id": 13,
+    "product_price": 2.75,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/3%CE%91_%CE%A1%CE%B5%CE%B2%CF%8D%CE%B8%CE%B9%CE%B1_%CE%BF%CE%BD%CE%B4%CF%81%CE%AC_%CE%95%CE%B9%CF%83%CE%B1%CE%B3%CF%89%CE%B3%CE%AE%CF%82_500%CE%B3%CF%81.jpg"
+  },
+  {
+    "product_id": 14,
+    "product_price": 1.85,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9C%CE%B1%CE%BB%CE%B1%CE%BA%CF%84%CE%B9%CE%BA%CE%BF_%CE%A3%CF%85%CE%BC%CF%80_Soupline_Mistral28%CF%80%CE%BB.jpg"
+  },
+  {
+    "product_id": 15,
+    "product_price": 2.48,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Knorr_%CE%9A%CF%8D%CE%B2%CE%BF%CE%B9_%CE%96%CF%89%CE%BC%CE%BF%CF%8D_%CE%9B%CE%B1%CE%B1%CE%BD%CE%B9%CE%BA%CF%8E%CE%BD_Etra_%CE%93%CE%B5%CF%8D%CF%83%CE%B7_147%CE%B3%CF%81.jpg"
+  },
+  {
+    "product_id": 16,
+    "product_price": 0.17,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/fusiko_metalliko_nero_500ml_zagori.jpg"
+  },
+  {
+    "product_id": 17,
+    "product_price": 2.58,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/HANSAPLAST_%CE%91%CE%94%CE%99%CE%91%CE%92%CE%A1%CE%9F%CE%A7%CE%91_20_%CE%A4%CE%9C%CE%A7.jpg"
+  },
+  {
+    "product_id": 18,
+    "product_price": 4.39,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%91%CE%BC%CE%BC%CE%BF%CF%83_%CE%A5%CE%B3%CE%B9%CE%B5%CE%B9%CE%BD%CE%B7%CF%83_Friskies_5KG.jpg"
+  },
+  {
+    "product_id": 19,
+    "product_price": 3.35,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A3%CE%B5%CF%81%CE%B2_Every_Day_Ul_Plus_Sens_Super_10%CF%84.jpg"
+  },
+  {
+    "product_id": 20,
+    "product_price": 0.43,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9B%CE%B5%CE%BC%CE%BF%CE%BD%CE%B1%CE%B4%CE%B1_%CE%95%CF%88%CE%B1_232ML_%CE%93%CF%85%CE%B1%CE%BB%CE%B9.jpg"
+  },
+  {
+    "product_id": 21,
+    "product_price": 1.7,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%95%CE%BD%CF%84%CE%BF%CE%BC%CE%9A%CE%BF_Pyrox_%CE%A3%CF%80%CE%B9%CF%81%CE%B1%CE%BB_10T%CE%95%CE%9C.jpg"
+  },
+  {
+    "product_id": 22,
+    "product_price": 3.9,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Fairy_Ultra_%CE%9B%CE%B5%CE%BC%CF%8C%CE%BD%CE%B9.jpg"
+  },
+  {
+    "product_id": 23,
+    "product_price": 2.69,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%93%CE%AC%CE%BB%CE%B1_%CE%94%CE%AD%CE%BB%CF%84%CE%B1_%CE%A0%CE%BB%CE%AE%CF%81%CE%B5%CF%82_2%CE%BB%CE%AF%CF%84%CF%81%CE%BF%CF%85.jpg"
+  },
+  {
+    "product_id": 24,
+    "product_price": 1.45,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A6%CF%81%CF%85%CE%B3%CE%B1%CE%BD%CE%B9%CE%AD%CF%82_Elite_%CE%A3%CF%84%CE%B1%CF%81%CE%B9%CE%BF%CF%85_250%CE%B3%CF%81_%CE%9A%CE%BF%CF%85%CF%84%CE%AF.jpg"
+  },
+  {
+    "product_id": 25,
+    "product_price": 3.67,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Nestle_%CE%A6%CE%B1%CF%81%CE%AF%CE%BD_%CE%9B%CE%B1%CE%BA%CF%84%CE%AD_350%CE%B3%CF%81.jpg"
+  },
+  {
+    "product_id": 26,
+    "product_price": 5.98,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9C%CF%80%CF%81%CE%B9%CE%B6%CF%8C%CE%BB%CE%B5%CF%82_%CE%9A%CE%B1%CF%81%CE%AD%CE%9A%CF%8C%CE%BD%CF%84%CF%81%CE%B1_%CE%A7%CE%BF%CE%B9%CF%81_%CE%9D%CF%89%CF%80%CE%AD%CF%82_%CE%95%CE%B9%CF%83_%CE%9C%CE%9F.jpg"
+  },
+  {
+    "product_id": 27,
+    "product_price": 3.47,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9A%CE%A1%CE%95%CE%9C%CE%91_FISSAN_50%CE%93%CE%A1.jpg"
+  },
+  {
+    "product_id": 28,
+    "product_price": 2.32,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%93%CE%91%CE%9B%CE%91_%CE%A5%CE%A8_%CE%98%CE%95%CE%A1_%CE%95%CE%A0_FAMIL_LIGHT_1_5_1_5L.jpg"
+  },
+  {
+    "product_id": 29,
+    "product_price": 2.52,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%A3%CE%95%CE%A1%CE%92EVDAY_HDRY_ULPL_EXTRLONG10T.jpg"
+  },
+  {
+    "product_id": 30,
+    "product_price": 17.03,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9B%CE%B9%CE%BA%CE%AD%CF%81_Baileys_Irish_Cream_700ML.jpg"
+  },
+  {
+    "product_id": 31,
+    "product_price": 3.67,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%93%CE%91%CE%9B%CE%91%CE%9A%CE%A4_%CE%9A%CE%91%CE%98_%CE%A0%CE%A1O%CE%A3_%CE%9E%CE%95_NIVEA_VISAGE200M.jpg"
+  },
+  {
+    "product_id": 32,
+    "product_price": 3.48,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9A%CE%B1%CE%B8_%CE%A3%CE%BA_%CE%A0%CE%BB%CF%85%CE%BD_%CE%A1%CE%BF%CF%85%CF%87%CF%89%CE%BD_Dr_Beckmann_250%CE%93.jpg"
+  },
+  {
+    "product_id": 33,
+    "product_price": 2.89,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Klinex_%CE%A3%CF%80%CF%81%CE%AD%CF%85_4%CF%83%CE%B51.jpg"
+  },
+  {
+    "product_id": 34,
+    "product_price": 12.7,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9B%CE%B9%CE%BA%CE%AD%CF%81_%CE%A4%CE%B5%CE%BD%CF%84%CE%BF%CF%85%CF%81%CE%B1_%CE%9A%CE%B1%CF%83%CF%84%CF%81%CE%BF_500%CE%9C%CE%9B.jpg"
+  },
+  {
+    "product_id": 35,
+    "product_price": 1.79,
+    "product_image": "https://s1.sklavenitis.gr/images/ProductDetail/40/files/ProductMedia/Products/4356556/1.jpg"
+  },
+  {
+    "product_id": 36,
+    "product_price": 2.03,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/Agrino_%CE%A6%CE%B1%CF%83%CF%8C%CE%BB%CE%B9%CE%B1_%CE%9C%CE%AD%CF%84%CF%81%CE%B9%CE%B1_500%CE%B3%CF%81.jpg"
+  },
+  {
+    "product_id": 37,
+    "product_price": 1.45,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%91%CF%87%CE%BB%CE%AC%CE%B4%CE%B9%CE%B1_%CE%9A%CF%81%CF%85%CF%83%CF%84%CE%B1%CE%BB%CE%AF%CE%B1_%CE%95%CE%B3%CF%87_%CE%95%CE%BE%CF%84%CF%81%CE%B1.jpg"
+  },
+  {
+    "product_id": 38,
+    "product_price": 10.86,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%91%CF%81%CE%BD%CE%B9%CE%AC_%CE%9D%CF%89%CF%80%CE%AC_%CE%95%CE%BB%CE%BB%CE%B7%CE%BD_%CE%93%CE%B1%CE%BB_%CE%A4%CE%B5%CE%BC_%CE%A7%CE%9A_%CE%A7%CE%A3_%CE%A3%CF%85%CF%83%CE%BA%CE%9D%CE%BF.jpg"
+  },
+  {
+    "product_id": 39,
+    "product_price": 4.08,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9A%CF%81%CE%B5%CE%BC%CE%B1_%CE%95%CF%80%CE%B9%CF%80%CE%BB%CF%89%CE%BD_Overlay_250ML.jpg"
+  },
+  {
+    "product_id": 40,
+    "product_price": 6.99,
+    "product_image": "https://warply.s3.amazonaws.com/applications/ed840ad545884deeb6c6b699176797ed/products/%CE%9C%CE%B5%CF%84%CE%B1%CE%BE%CE%B1_3_A%CF%83%CF%84%CE%B5%CF%81_350%CE%9C.jpg"
+  }
+]

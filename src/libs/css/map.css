@@ -1,0 +1,56 @@
+#removeFilter {
+    color: #f85b5b;
+}
+
+@media screen and (max-width: 1200px){
+    .leaflet-popup table {
+        display: table;
+        border: none;
+    }
+
+    .leaflet-popup table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+ 
+    .leaflet-popup table tr {
+        padding: .5em;
+        border: 3px solid #000000;
+        border-radius: .5em;
+        display: block;
+        margin-bottom: 4em;
+    }
+    
+    .leaflet-popup table td{
+        border-bottom: 3px solid #000000;
+        display: block;
+        font-size: 1.2em;
+        text-align: right;
+    }
+
+    .leaflet-popup th, .leaflet-popup td {
+        padding: 1em 0;
+    }
+    
+    .leaflet-popup table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        color: #000000;
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    .leaflet-popup table td:last-child {
+        border-bottom: 0;
+    }
+}

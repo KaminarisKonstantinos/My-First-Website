@@ -1,0 +1,53 @@
+@media screen and (max-width: 1200px) {
+    .popuptext table {
+        width: 100%;
+        display: table;
+        border: none;
+    }
+
+    .popuptext table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+ 
+    .popuptext table tr {
+        padding: .5em;
+        border: 3px solid #000000;
+        border-radius: .5em;
+        display: block;
+        margin-bottom: 4em;
+    }
+    
+    .popuptext table td{
+        border-bottom: 3px solid #000000;
+        display: block;
+        font-size: 1.2em;
+        text-align: right;
+    }
+
+    .popuptext th, .popuptext td {
+        padding: 1em 0;
+    }
+    
+    .popuptext table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        color: #000000;
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    .popuptext table td:last-child {
+        border-bottom: 0;
+    }
+}
