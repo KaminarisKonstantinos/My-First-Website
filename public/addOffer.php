@@ -47,6 +47,7 @@
             </div>
             <div class="col-10 col-l-10 col-m-10 col-s-10 addOfferBox"> 
             <h1>Προσθήκη Προσφοράς</h1>
+            <h2 id='poiName'></h2>
                 <div class="col-6 col-l-6 col-m-12 col-s-12 categoryBox">
                     <main>
                         <form method="post">
@@ -75,7 +76,7 @@
                 </div>
                 <div class="col-12 col-l-12 col-m-12 col-s-12">
                     <main>
-                        <form action="../src/libs/addOffer.php" method="post">
+                        <form id='submitForm' method="post">
                             <div>
                                 <label for="product">Προϊόν:</label>
                                 <textarea type="text" name="product" id="productName" readonly disabled>
@@ -86,6 +87,18 @@
                                 <label for="price">Τιμή:</label>
                                 <input type="text" name="price" id="price">
                             </div>
+                            <?php
+                                if (!empty($_SESSION['error'])){
+                            ?>
+                            <div class="alert">
+                            <?php
+                                echo $_SESSION['error'];
+                                unset($_SESSION['error']);
+                            ?>
+                            </div>
+                            <?php
+                                }
+                            ?>
                             <button type="submit">Υποβολή</button>
                         </form>
                     </main>

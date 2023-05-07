@@ -6,6 +6,23 @@ let products
 let productsHtml
 let allSubcategories
 let productsPerSubcategory = new Object();
+let poiId
+
+function getCurrentURL () {
+    return window.location.search
+}
+
+function getPoiName () {
+    const url = getCurrentURL();
+    const urlParams = new URLSearchParams(url);
+    poiId = urlParams.get('poiId');
+    fillFormAction();
+    $.get( "../src/libs/getPoiName.php", { poiId: poiId }, function( data ) {
+        const poiNameTable = JSON.parse(data);
+        document.getElementById('poiName').innerHTML = poiNameTable[0]['Poi_Name'];
+    });
+}
+
 function makeVisible(value) {
     //Make all subcategory selects invisible
     const allSubSelects = document.getElementsByClassName('subcategory');
@@ -116,5 +133,11 @@ function searchByName(form) {
     productsHtml += "</select>";
     document.getElementById("searchProductsContainer").innerHTML = productsHtml;
 }
+
+function fillFormAction() {
+    document.getElementById('submitForm').setAttribute("action", "../src/libs/addOffer.php?poiId=" + poiId);
+}
+
+getPoiName();
 
 getCategories();
