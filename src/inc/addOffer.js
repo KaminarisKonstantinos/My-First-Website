@@ -6,7 +6,7 @@ let products
 let productsHtml
 let allSubcategories
 let productsPerSubcategory = new Object();
-
+//hello
 function makeVisible(value) {
     //Make all subcategory selects invisible
     const allSubSelects = document.getElementsByClassName('subcategory');
