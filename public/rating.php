@@ -5,7 +5,6 @@
     }
     include '../src/libs/connection.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
