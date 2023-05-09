@@ -283,9 +283,9 @@ button[type="button"].alreadyDisliked:hover {
       }
 
     .logo {
-        width: 20%;
+        height: 60px;
         position: relative;
-        left: 40%;
+        left: 15px;
     }
 
     .leaflet-popup table td, .popuptext table td, .rating table td{
@@ -313,11 +313,6 @@ button[type="button"].alreadyDisliked:hover {
 
     .box .nav-bar {
         flex: 1 1 auto;
-    }
-    
-    .box #mapContainer {
-        height: 80%;
-        flex: 0 1 auto;
     }
 
     #map {

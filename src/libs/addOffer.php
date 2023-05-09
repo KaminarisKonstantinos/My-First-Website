@@ -84,7 +84,6 @@ while($row = $result->fetch_assoc()) {
       $stmt2->close();
       $existingCheck = false;
       $stmt->close();
-      exit;
     }
     else{
       // The proposed offer is not good enough
@@ -92,6 +91,7 @@ while($row = $result->fetch_assoc()) {
       $_SESSION['error'] = 'Υπάρχει ήδη προσφορά για αυτό το προϊόν σε αυτό το κατάστημα.';
       header('Location: ../../public/addOffer.php?poiId=' . $_GET['poiId']);
       $stmt->close();
+      $con->close();
       exit;
     }
   }
@@ -101,9 +101,31 @@ $stmt = $con->prepare('INSERT INTO offers (Poi_Id, User_Id, Product_Id, Price, D
 $stmt->bind_param('ssssss', $_GET['poiId'], $_SESSION['userId'], $_POST['product'],  $_POST['price'],$dayCheck, $weekCheck);
 $stmt->execute();
 $_SESSION['error'] = 'Η προσφορά καταχωρήθηκε! Ευχαριστούμε πολύ.';
-header('Location: ../../public/addOffer.php?poiId=' . $_GET['poiId']);
-
+if ($weekCheck) {
+  if ($dayCheck) {
+    $_SESSION['error'] .= ' Συγχαρητήρια! Βρήκατε πολύ καλή προσφορά και κερδίζετε 70 πόντους! ';
+    $score = 70;
+  }
+  else {
+    $_SESSION['error'] .= ' Συγχαρητήρια! Βρήκατε καλή προσφορά και κερδίζετε 20 πόντους! ';
+    $score = 20;
+  }
+}
+else if ($dayCheck) {
+  $_SESSION['error'] .= ' Συγχαρητήρια! Βρήκατε καλή προσφορά και κερδίζετε 50 πόντους! ';
+  $score = 50;
+}
 $stmt->close();
+$stmt = $con->prepare('UPDATE users SET Monthly_Score = Monthly_Score + ? WHERE User_Id = ? ;');
+$stmt->bind_param('is', $score, $_SESSION['userId']);
+$stmt->execute();
+$stmt->close();
+$stmt = $con->prepare('UPDATE users SET Global_Score = Global_Score + ? WHERE User_Id = ? ;');
+$stmt->bind_param('is', $score, $_SESSION['userId']);
+$stmt->execute();
+$stmt->close();
+
+header('Location: ../../public/addOffer.php?poiId=' . $_GET['poiId']);
 
 $con->close();
 ?>

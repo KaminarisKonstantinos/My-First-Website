@@ -27,27 +27,27 @@
     <div class="box">
         <div class="row" id="demo">
         </div>
-        <div class="row nav-bar">
-            <div class="col-1 col-m-11 col-s-3">
+        <div class="row nav-bar" id = 'myTopnav'>
+            <div class="col-1 col-m-1 col-s-1">
                 <img class="logo" src="../src/stock_spirits_logo.svg.png" alt="Flowers in Chania">
             </div>
-            <div class="col-1">
+            <div class="col-1 blank">
             </div>
-            <div class="col-3 col-m-4 col-s-9">
+            <div class="col-3 col-m-12 col-s-12">
                 <form id="poifilter" method="POST">
                     <input name="inputbox" type="text" placeholder="Αναζήτησε για ένα κατάστημα..">
                     <button style="all:unset;" onclick="searchByName(this.form);return false"><i class="fa fa-search"></i></button>
                 </form>
             </div>
-            <div class="col-1 col-m-1 col-s-3">
+            <div class="col-1 col-m-1 col-s-3 blank">
             </div>
-            <div class="col-3 col-m-4 col-s-9">
+            <div class="col-3 col-m-12 col-s-12">
                 <form name="categoryform" id="categoryform">
                 </form>
             </div>
-            <div class="col-1 col-m-1 col-s-9">
+            <div class="col-1 col-m-1 col-s-9 blank">
             </div>
-            <div class="col-2 col-m-2 col-s-3">
+            <div class="col-2 col-m-12 col-s-12">
                 <form name="form1" id="form1" method="post">
                     <select name="option" id="option" onchange="window.location.href=this.value;">
                         <option value="" disabled selected hidden>
@@ -60,6 +60,9 @@
                     </select>
                 </form>
             </div>
+            <a href="javascript:void(0);" class="icon" onclick="responsive()">
+                <i class="fa fa-bars"></i>
+            </a>
         </div>
         <div class="row" id="mapContainer">
             <div class="col-12 col-m-12 col-s-12" id="map"></div>

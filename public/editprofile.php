@@ -26,11 +26,6 @@
             <div class="col-12 popuptext" id="likesDislikes">
             </div>
         </div>
-        <div id="demo" style="background-color: #fff;">
-            <?php
-                print_r($_SESSION);
-            ?>
-        </div>
         <div class="row nav-bar">
             <div class="col-1 col-m-1 col-s-1">
                 <img class="logo" src="../src/stock_spirits_logo.svg.png" alt="Flowers in Chania">

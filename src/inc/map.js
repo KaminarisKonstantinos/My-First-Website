@@ -273,6 +273,16 @@ function toNormalForm(str) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
+//Responsive navbar
+function responsive() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "row nav-bar") {
+    x.className += " responsive";
+  } else {
+    x.className = "row nav-bar";
+  }
+}
+
 //Create map
 let map = L.map('map').setView([38.246445, 21.735517], 17);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
