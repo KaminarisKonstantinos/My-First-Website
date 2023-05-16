@@ -27,37 +27,25 @@ if (!is_numeric($_POST['price'])) {
 
 //Perform DayCheck
 $yesterday = date("Y-m-d", strtotime('-1 days'));
-$stmt = $con->prepare('SELECT AVG(Price) AS Price FROM offers WHERE Product_Id=? AND Is_active=1 AND Has_Stock=1 AND Date BETWEEN ? AND ? ; ');
-$stmt->bind_param('sss', $_POST['product'], $yesterday, $yesterday);
+$stmt = $con->prepare('SELECT Price FROM prices WHERE Product_Id=? AND Date=? ; ');
+$stmt->bind_param('ss', $_POST['product'], $yesterday);
 $stmt->execute();
 $result = $stmt->get_result();
 while($row = $result->fetch_assoc()) {
-  if(!$row['Price']){
-    // Product has no offers
-    $dayCheck = true;
-  }
-  else {
-    // Product has at least one offer
-    $dayCheck = ($_POST['price'] < round(0.8 * $row['Price'], 2));
-  }
+  $dayCheck = ($_POST['price'] < round(0.8 * $row['Price'], 2));
+  break;
 }
 $stmt->close();
 
 //Perform WeekCheck
 $lastWeek = date("Y-m-d", strtotime('-7 days'));
-$stmt = $con->prepare('SELECT AVG(Price) AS Price FROM offers WHERE Product_Id=? AND Is_active=1 AND Has_Stock=1 AND Date BETWEEN ? AND ? ; ');
+$stmt = $con->prepare('SELECT AVG(Price) AS Price FROM prices WHERE Product_Id=? AND Date BETWEEN ? AND ? ; ');
 $stmt->bind_param('sss', $_POST['product'], $lastWeek, $yesterday);
 $stmt->execute();
 $result = $stmt->get_result();
 while($row = $result->fetch_assoc()) {
-  if(!$row['Price']){
-    // Product has no offers
-    $weekCheck = true;
-  }
-  else {
-    // Product has at least one offer
-    $weekCheck = ($_POST['price'] < round(0.8 * $row['Price'], 2));
-  }
+  $weekCheck = ($_POST['price'] < round(0.8 * $row['Price'], 2));
+  break;
 }
 
 $stmt->close();
@@ -97,8 +85,9 @@ while($row = $result->fetch_assoc()) {
   }
 }
 
-$stmt = $con->prepare('INSERT INTO offers (Poi_Id, User_Id, Product_Id, Price, Day_Check, Week_Check) VALUES (?, ?, ?, ?, ?, ?); ');
-$stmt->bind_param('ssssss', $_GET['poiId'], $_SESSION['userId'], $_POST['product'],  $_POST['price'],$dayCheck, $weekCheck);
+$stmt = $con->prepare('INSERT INTO offers (Poi_Id, User_Id, Product_Id, Price, Day_Check, Week_Check, End_Date) VALUES (?, ?, ?, ?, ?, ?, ?); ');
+$endDate = date("Y-m-d", strtotime('+6 days'));
+$stmt->bind_param('sssssss', $_GET['poiId'], $_SESSION['userId'], $_POST['product'],  $_POST['price'],$dayCheck, $weekCheck, $endDate);
 $stmt->execute();
 $_SESSION['error'] = 'Η προσφορά καταχωρήθηκε! Ευχαριστούμε πολύ.';
 if ($weekCheck) {

@@ -2,7 +2,7 @@
 include '../src/libs/connection.php';
             
 // json file name
-$filename = "./product prices images.json";
+$filename = "./images.json";
             
 // Read the JSON file in PHP
 $data = file_get_contents($filename); 
@@ -16,7 +16,7 @@ foreach($array as $row) {
     // Database query to insert data 
     // into database Make Multiple 
     // Insert Query 
-    $query = "UPDATE products SET product_price = ".$row["product_price"].", product_image = '".$row["product_image"]."' WHERE product_id = ".$row["product_id"];
+    $query = "UPDATE products SET product_image = '".$row["product_image"]."' WHERE product_id = ".$row["product_id"];
     echo var_dump($query);
     // Run the query
     mysqli_multi_query($con, $query);

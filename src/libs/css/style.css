@@ -272,6 +272,10 @@ button[type="button"].alreadyDisliked:hover {
     background: #860707;
 }
 
+button[type='button'].outOfStock:hover {
+    pointer-events: none;
+}
+
 @media only screen and (max-width: 992px) {
     .col-0 {clear: both;}
 }

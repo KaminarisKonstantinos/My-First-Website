@@ -114,7 +114,7 @@ function removeDislikeAndAddLike(offerId, likeButton, dislikeButton) {
     addLike(offerId, likeButton, dislikeButton);
 }
 
-function swapStock(offerId) {
+function swapStock(offerId, hasStock) {
     $.get( "../src/libs/swapStock.php", { offer_Id: offerId } );
 }
 
@@ -162,19 +162,21 @@ function fillAndOpenPopup(offer) {
     document.getElementById("stockButton").onclick = function () { 
         if (offerElement['Has_Stock']) {
             offerElement['Has_Stock'] = !offerElement['Has_Stock'];
-            console.log(offerElement['Has_Stock']);
             document.getElementById("stockButton").innerHTML = "In Stock";
         }
         else {
             offerElement['Has_Stock'] = !offerElement['Has_Stock'];
-            console.log(offerElement['Has_Stock']);
             document.getElementById("stockButton").innerHTML = "Out of Stock";
         }
-        swapStock(offerId);
+        swapStock(offerId, offerElement['Has_Stock']);
     };
 
     if (!offerElement['Has_Stock']) {
         document.getElementById("stockButton").innerHTML = "In Stock";
+        document.getElementById("likeButton").disabled = true;
+        document.getElementById("likeButton").classList.add('outOfStock');
+        document.getElementById("dislikeButton").disabled = true;
+        document.getElementById("dislikeButton").classList.add('outOfStock');
     }
 
     //Manage if user already likes the offer

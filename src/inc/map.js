@@ -74,7 +74,7 @@ function markerPlacement() {
             buttonContainer.innerHTML = "<div class=\"box centeralign\"><button class=\"popupbutton\" type=\"button\" onclick=\"location.href='./rating.php?poiId=" + poi["Poi_Id"] + "'\">Αξιολόγηση</button><button class=\"popupbutton\" type=\"button\" onclick=\"location.href='./addOffer.php?poiId=" + poi["Poi_Id"] + "'\">Προσθήκη Προσφοράς</button></div>";
           }
           else {
-            buttonContainer.innerHTML = "<button class=\"popupbutton\" type=\"button\" onclick=\"alert('Hello world!')\">Προσθήκη Προσφοράς</button>";
+            buttonContainer.innerHTML = "<div class=\"box centeralign\"><button class=\"popupbutton\" type=\"button\" onclick=\"location.href='./addOffer.php?poiId=" + poi["Poi_Id"] + "'\">Προσθήκη Προσφοράς</button></div>";
           }
         }
         else {
