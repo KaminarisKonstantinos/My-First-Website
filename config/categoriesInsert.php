@@ -1,7 +1,7 @@
 <?php
 include '../src/libs/connection.php';
 
-$query = 'INSERT INTO categories (category_id, category_name, category_parent_id) VALUES ';
+$query = 'INSERT IGNORE INTO categories (category_id, category_name, category_parent_id) VALUES ';
             
 // json file name
 $filename = "./e-katanalotis-data-main/products_and_categories.json";
