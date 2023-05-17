@@ -42,8 +42,8 @@
         <div class='adminOptions'>
             <div class='uploadSection'>
                 <div class='categoriesManagement'>
-                    <header>Κατηγορίες</header>
-                    <form id='categoryForm' action="../uploadFiles/categories.json" method="post" enctype="multipart/form-data">
+                    <header>Κατηγορίες και Προϊόντα</header>
+                    <form id='categoryForm' action="../src/libs/uploadFile.php?id=1" method="post" enctype="multipart/form-data">
                         <div class='t'>
                             <input id="file" name="file" type="file" />
                         </div>
@@ -51,11 +51,23 @@
                             <button><i class="fa fa-cloud-upload"></i></button>
                         </div>
                     </form>
+                    <?php
+                        if (!empty($_SESSION['error1'])){  
+                    ?>
+                    <p class="alert">
+                    <?php
+                            echo $_SESSION['error1'];
+                            unset($_SESSION['error1']);
+                    ?>
+                    </p>
+                    <?php
+                        }
+                    ?>
                     <button class='delete'>Διαγραφή όλων</button>
                 </div>
                 <div class='productsManagement'>
-                    <header>Προϊόντα</header>
-                    <form id='productForm' action="/api" method="post" enctype="multipart/form-data">
+                    <header>Τιμές</header>
+                    <form id='productForm' action="../src/libs/uploadFile.php?id=2" method="post" enctype="multipart/form-data">
                         <div class='t'>
                             <input id="file" name="file" type="file" />
                         </div>
@@ -63,11 +75,23 @@
                             <button><i class="fa fa-cloud-upload"></i></button>
                         </div>
                     </form>
+                    <?php
+                        if (!empty($_SESSION['error2'])){  
+                    ?>
+                    <p class="alert">
+                    <?php
+                            echo $_SESSION['error2'];
+                            unset($_SESSION['error2']);
+                    ?>
+                    </p>
+                    <?php
+                        }
+                    ?>
                     <button class='delete'>Διαγραφή όλων</button>
                 </div>
                 <div class='poisManagement'>
                     <header>Points of Interest</header>
-                    <form id='poiForm' action="/api" method="post" enctype="multipart/form-data">
+                    <form id='poiForm' action="../src/libs/uploadFile.php?id=3" method="post" enctype="multipart/form-data">
                         <div class='t'>
                             <input id="file" name="file" type="file" />
                         </div>
@@ -75,6 +99,18 @@
                             <button><i class="fa fa-cloud-upload"></i></button>
                         </div>
                     </form>
+                    <?php
+                        if (!empty($_SESSION['error3'])){  
+                    ?>
+                    <p class="alert">
+                    <?php
+                            echo $_SESSION['error3'];
+                            unset($_SESSION['error3']);
+                    ?>
+                    </p>
+                    <?php
+                        }
+                    ?>
                     <button class='delete'>Διαγραφή όλων</button>
                 </div>
             </div>

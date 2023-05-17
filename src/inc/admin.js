@@ -1,5 +1,5 @@
 const categoryForm = document.getElementById('categoryForm');
-categoryForm.addEventListener('submit', handleSubmit);
+//categoryForm.addEventListener('submit', handleSubmit);
 
 function handleSubmit(event) {
 

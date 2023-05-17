@@ -3,7 +3,7 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    gap:8vw;
+    gap:10%;
 }
 
 .uploadSection, 
@@ -14,7 +14,7 @@
     flex-flow: row wrap;
     background-color: #8cb352;
     width: 30%;
-    height: 60%;
+    height: 70%;
 }
 
 header {
@@ -35,6 +35,7 @@ label {
 
 form {
     display: table;
+    margin: 5px;
 }
 
 form i {
@@ -54,4 +55,9 @@ button.delete {
     position: relative;
     left:50%;
     transform: translateX(-50%);
+}
+
+.alert {
+    text-align: center;
+    padding: unset;
 }
