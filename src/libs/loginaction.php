@@ -18,7 +18,7 @@ if (empty($_POST['username']) || empty($_POST['password'])) {
   exit;
 }
 // We need to check if the account with that username exists.
-if ($stmt = $con->prepare('SELECT user_id, password FROM users WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT user_id, password, is_admin FROM users WHERE username = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), hash the password using the PHP password_hash function.
 	$stmt->bind_param('s', $_POST['username']);
 	$stmt->execute();
@@ -43,9 +43,15 @@ if ($stmt = $con->prepare('SELECT user_id, password FROM users WHERE username = 
                 exit;
             }
             else {
+              $_SESSION['isAdmin'] = $row['is_admin'];
               $_SESSION['userId'] = $row['user_id'];
               $_SESSION['username'] = $_POST['username'];
-              header('Location: ../../public/map.php');
+              if ($_SESSION['isAdmin']) {
+                header('Location: ../../public/admin.php');
+              }
+              else {
+                header('Location: ../../public/map.php');
+              }
               $stmt->close();
               $con->close();
               exit;
