@@ -1,10 +1,11 @@
 <?php
 include '../src/libs/connection.php';
+session_start();
 
 $query = 'INSERT IGNORE INTO poi (poi_id, poi_name, latitude, longitude) VALUES ';
 
 // json file name
-$filename = "./poi.geojson";
+$filename = '../uploadFiles/' . $_GET['filename'];
             
 // Read the JSON file in PHP
 $data = file_get_contents($filename); 
@@ -29,8 +30,10 @@ foreach($array["features"] as $row) {
 //Remove last "," from query
 $query = substr($query, 0, -1);
 
-echo var_dump($query);
+$queryResult = mysqli_multi_query($con, $query);
 
-mysqli_multi_query($con, $query);
+$_SESSION['error3'] .= ($queryResult) ? 'Pois uploaded successfully' : 'Pois did not upload successfully' ;
+
+header('Location: ../public/admin.php');
 
 

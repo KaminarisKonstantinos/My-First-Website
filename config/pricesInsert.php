@@ -1,10 +1,11 @@
 <?php
 include '../src/libs/connection.php';
+session_start();
             
 $query = 'INSERT INTO prices (product_id, date, price) VALUES ';
 
 // json file name
-$filename = "./updatePrices.json";
+$filename = '../uploadFiles/' . $_GET['filename'];
             
 // Read the JSON file in PHP
 $data = file_get_contents($filename); 
@@ -30,8 +31,11 @@ $query = substr($query, 0, -1);
 //Add duplicate functionality
 $query .= ' ON DUPLICATE KEY UPDATE price=VALUES(price)';
 
-echo var_dump($query);
 // Run the query
-mysqli_multi_query($con, $query);
+$queryResult = mysqli_multi_query($con, $query);
+
+$_SESSION['error2'] .= ($queryResult) ? 'Prices uploaded successfully' : 'Prices did not upload successfully' ;
+
+header('Location: ../public/admin.php');
 
 
