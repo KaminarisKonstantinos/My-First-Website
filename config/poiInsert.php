@@ -19,7 +19,7 @@ foreach($array["features"] as $row) {
     // Database query to insert data 
     // into database Make Multiple 
     // Insert Query 
-    if ($row["properties"]["name"]) {
+    if (array_key_exists('name', $row["properties"])) {
         $query .= "( '".$row["id"]."', '".$row["properties"]["name"]."', '".$row["geometry"]["coordinates"][1]."', '".$row["geometry"]["coordinates"][0]."' )," ; 
     }  
     else {

@@ -63,7 +63,7 @@
                     <?php
                         }
                     ?>
-                    <button class='delete'>Διαγραφή όλων</button>
+                    <button class='delete' onclick=confirmDelete(1);>Διαγραφή όλων</button>
                 </div>
                 <div class='productsManagement'>
                     <header>Τιμές</header>
@@ -87,7 +87,7 @@
                     <?php
                         }
                     ?>
-                    <button class='delete'>Διαγραφή όλων</button>
+                    <button class='delete' onclick=confirmDelete(2);>Διαγραφή όλων</button>
                 </div>
                 <div class='poisManagement'>
                     <header>Points of Interest</header>
@@ -111,10 +111,17 @@
                     <?php
                         }
                     ?>
-                    <button class='delete'>Διαγραφή όλων</button>
+                    <button class='delete' onclick=confirmDelete(3);>Διαγραφή όλων</button>
                 </div>
             </div>
             <div class='menuSection'>
+                <header>Γραφήματα και Στατιστικά</header>
+                <div class='grid'>
+                    <button class='item1'>Πλήθος προσφορών ανά μέρα</button>
+                    <button class='item2'>Μέση έκπτωση ανά κατηγορία</button>
+                    <button class='item3' onclick="window.location.href='./leaderboard.php'">Leaderboard</button>
+                    <button class='item4'>Χάρτης</button>
+                </div>
             </div>
         </div>
     </div>
