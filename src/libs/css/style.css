@@ -68,6 +68,10 @@ table{
     table-layout: fixed;
 }
 
+#paginated-table tbody tr:nth-child(2n + 1) > * {
+    background-color: #2c2c2c;
+}
+
 .leaflet-popup , .leaflet-popup-content-wrapper, .leaflet-popup-content{
     z-index: 1500;
 }
