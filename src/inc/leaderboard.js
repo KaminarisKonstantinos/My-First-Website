@@ -1,11 +1,13 @@
 const paginationNumbers = document.getElementById("pagination-numbers");
 const paginatedTable = document.getElementById("paginated-table");
-const tableItems = paginatedTable.querySelectorAll("tbody>tr");
+let tableItems;
+let pageCount;
 const nextButton = document.getElementById("next-button");
 const prevButton = document.getElementById("prev-button");
+let leaderboard;
 
 const paginationLimit = 10;
-const pageCount = Math.ceil(tableItems.length / paginationLimit);
+
 let currentPage = 1;
 
 const disableButton = (button) => {
@@ -52,14 +54,17 @@ const appendPageNumber = (index) => {
   paginationNumbers.appendChild(pageNumber);
 };
 
-const getPaginationNumbers = () => {
-  for (let i = 1; i <= pageCount; i++) {
+const getPaginationNumbers = () => {  
+  paginationNumbers.innerHTML = '';
+  // Dynamically calculate bottom and top numbers to always have 5 numbers showing
+  for (let i = Math.max(1, Math.min(Math.max(1, currentPage-2)+4, pageCount)-4); i <= Math.min(Math.max(1, currentPage-2)+4, pageCount); i++) {
     appendPageNumber(i);
   }
 };
 
 const setCurrentPage = (pageNum) => {
   currentPage = pageNum;
+  getPaginationNumbers();
 
   handleActivePageNumber();
   handlePageButtonsStatus();
@@ -73,9 +78,26 @@ const setCurrentPage = (pageNum) => {
       item.classList.remove("hidden");
     }
   });
+
+  generatePaginationNumbersLinsteners();
 };
 
-window.addEventListener("load", () => {
+const generatePaginationNumbersLinsteners = () => {
+  document.querySelectorAll(".pagination-number").forEach((button) => {
+    const pageIndex = Number(button.getAttribute("page-index"));
+
+    if (pageIndex) {
+      button.addEventListener("click", () => {
+        setCurrentPage(pageIndex);
+      });
+    }
+  });
+}
+
+function paginateTable () {
+  tableItems = paginatedTable.querySelectorAll("tbody>tr");
+  pageCount = Math.ceil(tableItems.length / paginationLimit);
+
   getPaginationNumbers();
   setCurrentPage(1);
 
@@ -87,13 +109,35 @@ window.addEventListener("load", () => {
     setCurrentPage(currentPage + 1);
   });
 
-  document.querySelectorAll(".pagination-number").forEach((button) => {
-    const pageIndex = Number(button.getAttribute("page-index"));
+  generatePaginationNumbersLinsteners();
+}
 
-    if (pageIndex) {
-      button.addEventListener("click", () => {
-        setCurrentPage(pageIndex);
-      });
-    }
+function getLeaderboard() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    leaderboard = JSON.parse(this.response);
+    fillLeaderboard();
+    paginateTable();
+    console.log(leaderboard);
+  }
+  xhttp.open("GET", "../src/libs/getLeaderboard.php");
+  xhttp.send();
+}
+
+function fillLeaderboard() {
+  const table = document.getElementById("tbody");
+  leaderboard.forEach( item => {
+    let row = table.insertRow();
+    let username = row.insertCell(0);
+    username.innerHTML = item.Username;
+    let globalScore = row.insertCell(1);
+    globalScore.innerHTML = item.Global_Score;
+    let monthlyTokens = row.insertCell(2);
+    monthlyTokens.innerHTML = item.Monthly_Tokens;
+    let globalTokens = row.insertCell(3);
+    globalTokens.innerHTML = item.Global_Tokens;
   });
-});
+}
+
+getLeaderboard();
+

@@ -26,6 +26,7 @@ th, td{
 }
 
 th {
+    background-color: rgb(123, 123, 123);
     color: #000000;
 }
 
@@ -35,6 +36,10 @@ p{
 
 .rating {
     color: #fff;
+}
+
+.rating table {
+    text-align: center;
 }
 
 .rating tbody tr :hover{
@@ -68,6 +73,7 @@ table{
 }
 
 .leaflet-popup table {
+    text-align: center;
     min-width: 400px;
     table-layout: auto;
 }
@@ -156,7 +162,7 @@ overflow: auto;
 min-width: 40%;
 min-height: 20%;
 text-align: center;
-background-color: #555;
+background-color: #2d2d38;;
 color: #fff;
 border-radius: 6px;
 padding: 0px 2em;
@@ -170,7 +176,6 @@ width: 100%;
 height: 100%;
 position: fixed;
 visibility:hidden;
-background-color: rgba(22,22,22,0.5);
 transition: all 500ms;
 opacity: 0;
 }
@@ -182,6 +187,10 @@ opacity: 1;
 
 .popup:target ~ .row{
     overflow-y: hidden;
+}
+
+.popup table {
+    text-align: center;
 }
 
 div.popup:target ~ div.nav-bar>div>img.logo{
@@ -367,6 +376,10 @@ button[type='button'].outOfStock:hover {
     .rating tr:last-child > td{
         border-bottom: 0;
     }
+
+    .rating tbody tr:nth-child(2n + 1) > * {
+        background-color: #1d1d28;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -392,6 +405,18 @@ button[type='button'].outOfStock:hover {
 
     tr:last-child > td{
         border-bottom: 0;
+    }
+
+    .popup tbody tr:nth-child(2n + 1) > * {
+        background-color: #1d1d28;
+    }
+
+    td:first-child, th:first-child {
+        padding-left: 1.2rem;
+    }
+
+    td:last-child, th:last-child {
+        padding-right: 1.2rem;
     }
 
     .col-0 {width: 0%;}
