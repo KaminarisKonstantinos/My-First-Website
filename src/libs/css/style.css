@@ -265,6 +265,10 @@ z-index: 400;
     flex: 1 1 auto;
 }
 
+.box #chartContainer {
+    background-color: rgba(255, 255, 255, 0.666);
+}
+
 .productImg {
     max-width: 225px;
 }
