@@ -6,6 +6,8 @@ let myChart = null;
 const month = ["Ιανουάριος","Φεβρουάριος","Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος"];
 let selectedMonth = month[(new Date().getMonth())];
 let selectedYear = new Date().getFullYear();
+const ctx = document.getElementById("line-chart");
+const today = new Date().getDate() - 1;
 
 function getActiveOffers() {
     const selectedMonthNum = month.indexOf(selectedMonth)+1
@@ -20,19 +22,16 @@ function getActiveOffers() {
 
 function calculateActiveDates() {
     offersPerDay = [];
-    const selectedMonthNum = month.indexOf(selectedMonth)+1
+    const selectedMonthNum = month.indexOf(selectedMonth)+1;
     const nextMonth = (selectedMonthNum==12)? 01 : selectedMonthNum+1;
     //initialisation at 0
     for (let i=1; i<=31; i++) {
         offersPerDay[i] = 0;
     }
-    console.log(activeOffers);
 
     activeOffers.forEach ( offer => {
         let begin = new Date(Math.max.apply(null,[new Date(offer.Date), new Date(selectedYear + '-' + selectedMonthNum + '-01')]));
         let end   = new Date(Math.min.apply(null,[new Date(offer.End_Date), new Date(selectedYear + '-' + nextMonth + '-01')]));
-        console.log(begin);
-        console.log(end)
 
         for(let i = begin; i < end; i.setDate(i.getDate() + 1)) {
             index = i.getDate();
@@ -63,21 +62,62 @@ function fillYears(){
     fixForms();
 }
 
+const todayLine = {
+    id: 'todayLine',
+    beforeDraw(chart, args, options) {
+        console.log(chart);
+        const {chartArea: { top, right, bottom, left }, chart: {width, height}, scales: {x, y} } = chart;
+        console.log(height);
+        var ctx = chart.chart.ctx;
+        ctx.save();
+        ctx.strokeStyle = 'red';
+        ctx.strokeRect(x.getPixelForTick(4), top, 0, height);
+        ctx.restore();
+    }
+}
+
+var originalLineDraw = Chart.controllers.line.prototype.draw;
+Chart.helpers.extend(Chart.controllers.line.prototype, {
+  draw: function() {
+    originalLineDraw.apply(this, arguments);
+
+    var chart = this.chart;
+    var ctx = chart.chart.ctx;
+
+    var index = chart.config.data.lineAtIndex;
+    console.log(index)
+    if (index && selectedYear==new Date().getFullYear() && selectedMonth==month[(new Date().getMonth())]) {
+      var xaxis = chart.scales['x-axis-0'];
+      var yaxis = chart.scales['y-axis-0'];
+
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top);
+      ctx.setLineDash([10, 5]);
+      ctx.strokeStyle = 'red';
+      ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+});
+
 function generateChart() {
     if(myChart!=null){
         myChart.destroy();
     }
-    myChart = new Chart(document.getElementById("line-chart"), {
+    const config = {
         type: 'line',
         data: {
-        labels: offersPerDayModified.map(row => row.date),
-        datasets: [{ 
-            data: offersPerDayModified.map(row => row.value),
-            label: "Ενεργές προσφορές",
-            borderColor: "#3e95cd",
-            fill: false
-            }
-        ]
+            labels: offersPerDayModified.map(row => row.date),
+            datasets: [{ 
+                data: offersPerDayModified.map(row => row.value),
+                label: "Ενεργές προσφορές",
+                borderColor: "#3e95cd",
+                fill: false
+                }
+            ],
+            lineAtIndex: today
         },
         options: {
             maintainAspectRatio: false,
@@ -87,14 +127,15 @@ function generateChart() {
                         suggestedMax: maxvalue+1,
                         beginAtZero: true
                     }
-                }]       
+                }]
             },
-        title: {
-            display: true,
-            text: 'Πλήθος ενεργών προσφορών ανά ημέρα (' + selectedMonth + ' ' + selectedYear + ')'
+            title: {
+                display: true,
+                text: 'Πλήθος ενεργών προσφορών ανά ημέρα (' + selectedMonth + ' ' + selectedYear + ')'
+            },
         }
-        }
-    });
+    };
+    myChart = new Chart(ctx, config);
 }
 
 function refreshChart(value, type) {
