@@ -8,17 +8,17 @@
 
 .uploadSection, 
 .menuSection {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     flex-flow: row wrap;
     background-color: #8cb352;
     width: 30%;
-    height: 70%;
+    height: 60%;
 }
 
 .menuSection {
-    height: 50%;
+    height: 40%;
 }
 
 .grid {
@@ -86,4 +86,10 @@ button.delete {
 .alert {
     text-align: center;
     padding: unset;
+}
+
+@media only screen and (min-width: 2000px) {
+    .box {
+        font-size: large;
+    }
 }

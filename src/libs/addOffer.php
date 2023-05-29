@@ -31,6 +31,7 @@ $stmt = $con->prepare('SELECT Price FROM prices WHERE Product_Id=? AND Date=? ; 
 $stmt->bind_param('ss', $_POST['product'], $yesterday);
 $stmt->execute();
 $result = $stmt->get_result();
+$dayCheck = true;
 while($row = $result->fetch_assoc()) {
   $dayCheck = ($_POST['price'] < round(0.8 * $row['Price'], 2));
   break;
@@ -43,6 +44,7 @@ $stmt = $con->prepare('SELECT AVG(Price) AS Price FROM prices WHERE Product_Id=?
 $stmt->bind_param('sss', $_POST['product'], $lastWeek, $yesterday);
 $stmt->execute();
 $result = $stmt->get_result();
+$weekCheck = true;
 while($row = $result->fetch_assoc()) {
   $weekCheck = ($_POST['price'] < round(0.8 * $row['Price'], 2));
   break;

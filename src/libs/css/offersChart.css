@@ -1,0 +1,10 @@
+#myTopnav {
+    flex: 0 1 auto;
+}
+
+#chartContainer {
+    width: 90%;
+    margin-left: 5%;
+    position: relative;
+    flex: 1 0 auto;
+}

@@ -388,6 +388,10 @@ button[type='button'].outOfStock:hover {
     .rating tbody tr:nth-child(2n + 1) > * {
         background-color: #1d1d28;
     }
+
+    .rating tbody tr:nth-child(2n + 1):hover > * {
+        background-color: #42424c;
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */

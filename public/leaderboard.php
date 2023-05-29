@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../src/libs/css/style.css">
     <link rel="stylesheet" href="../src/libs/css/style1.css">
     <link rel="stylesheet" href="../src/libs/css/leaderboard.css">
-    <title>Register</title>
+    <title>Leaderboard</title>
 </head>
 <body>
     <div class='box'>
