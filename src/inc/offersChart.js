@@ -136,7 +136,7 @@ function generateChart() {
             },
         }
     };
-    myChart = new Chart(ctx, config);//create chart
+    myChart = new Chart(ctx, config);
 }
 
 function refreshChart(value, type) {
