@@ -88,7 +88,7 @@ while($row = $result->fetch_assoc()) {
 }
 
 $stmt = $con->prepare('INSERT INTO offers (Poi_Id, User_Id, Product_Id, Price, Day_Check, Week_Check, End_Date) VALUES (?, ?, ?, ?, ?, ?, ?); ');
-$endDate = date("Y-m-d", strtotime('+6 days'));
+$endDate = date("Y-m-d", strtotime('+7 days'));
 $stmt->bind_param('sssssss', $_GET['poiId'], $_SESSION['userId'], $_POST['product'],  $_POST['price'],$dayCheck, $weekCheck, $endDate);
 $stmt->execute();
 $_SESSION['error'] = 'Η προσφορά καταχωρήθηκε! Ευχαριστούμε πολύ.';

@@ -3,7 +3,7 @@ session_start();
 include './connection.php';
 $output = [];
 
-$sql = "SELECT Offer_Id, Date, End_Date FROM offers WHERE Update_Date BETWEEN ? AND ?";
+$sql = "SELECT Offer_Id, Date, End_Date FROM offers WHERE (Update_Date BETWEEN ? AND ?) OR (Date BETWEEN ? AND ?)";
 
 $prevYear = 1;
 $prevMonth = 1;
@@ -44,7 +44,7 @@ switch ($_GET['month']){
 }
 $tmp1 = $prevYear.'-'.$prevMonth.'-'.$prevDate;
 $tmp2 = $_GET['year'].'-'.$_GET['month'].'-'.'31';
-$stmt->bind_param("ss", $tmp1, $tmp2);
+$stmt->bind_param("ssss", $tmp1, $tmp2, $tmp1, $tmp2);
 $stmt->execute();
 $result = $stmt->get_result();
 while($row = $result->fetch_assoc()) {

@@ -25,8 +25,10 @@ function calculateActiveDates() {
     const selectedMonthNum = month.indexOf(selectedMonth)+1;
     const nextMonth = (selectedMonthNum==12)? 01 : selectedMonthNum+1;
     //initialisation at 0
-    for (let i=1; i<=31; i++) {
-        offersPerDay[i] = 0;
+    const initialisationBegin = new Date(selectedYear + '-' + selectedMonthNum + '-01');
+    const initialisationEnd = new Date(selectedYear + '-' + nextMonth + '-01');
+    for (let i = initialisationBegin; i < initialisationEnd; i.setDate(i.getDate() + 1)) {
+        offersPerDay[i.getDate()] = 0;
     }
 
     activeOffers.forEach ( offer => {
@@ -85,7 +87,6 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
     var ctx = chart.chart.ctx;
 
     var index = chart.config.data.lineAtIndex;
-    console.log(index)
     if (index && selectedYear==new Date().getFullYear() && selectedMonth==month[(new Date().getMonth())]) {
       var xaxis = chart.scales['x-axis-0'];
       var yaxis = chart.scales['y-axis-0'];
@@ -124,7 +125,7 @@ function generateChart() {
             scales: {
                 yAxes: [{
                     ticks: {
-                        suggestedMax: maxvalue+1,
+                        suggestedMax: 6,//maxvalue+1,
                         beginAtZero: true
                     }
                 }]

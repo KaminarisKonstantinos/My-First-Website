@@ -13,13 +13,8 @@
     align-items: center;
     flex-flow: row wrap;
     background-color: #8cb352;
-    width: 30%;
-    height: 60%;
-}
-
-.menuSection {
-    height: 40%;
-}
+    flex: 0 1 800px;
+}   
 
 .grid {
     display: grid;
