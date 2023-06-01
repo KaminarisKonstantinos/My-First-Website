@@ -1,12 +1,15 @@
 let categories;
 let mainCategories;
 let subcategories;
+let avgPriceTable;
+let activeOffers;
 const ctx = document.getElementById('line-chart');
 const chartPlaceholder = document.getElementById("chartPlaceholder");
 let myChart;
 const today = new Date().getDate() - 1;
 let data;
-let startDate;
+let startDate = new Date();
+console.log(startDate);
 
 function getCategories() {
     const xhttp = new XMLHttpRequest();
@@ -55,15 +58,54 @@ function chooseSubcategory(value) {
     drawChart(value, 0);
 }
 
+function getPreviousMonday()
+{
+    var prevMonday = startDate;
+    prevMonday.setDate(prevMonday.getDate() - (prevMonday.getDay() + 6) % 7);
+    return prevMonday.toJSON().slice(0, 10);
+}
+
+function sixDaysBeforePreviousMonday() {
+    var sixDaysBeforePreviousMonday = startDate;
+    sixDaysBeforePreviousMonday.setDate(sixDaysBeforePreviousMonday.getDate() - (sixDaysBeforePreviousMonday.getDay() + 6) % 7);
+    sixDaysBeforePreviousMonday.setDate(sixDaysBeforePreviousMonday.getDate() - 6);
+    return sixDaysBeforePreviousMonday.toJSON().slice(0, 10);
+}
+
+function getNextSunday() {
+    var nextSunday = startDate;
+    nextSunday.setDate(nextSunday.getDate() - (nextSunday.getDay() + 6) % 7);
+    nextSunday.setDate(nextSunday.getDate() + 6);
+    return nextSunday.toJSON().slice(0, 10);
+}
+
+function goBackOneWeek() {
+    startDate.setDate(startDate.getDate() - 7);
+}
+
+function goForwardOneWeek() {
+    startDate.setDate(startDate.getDate() + 7);
+}
+
 function fillData(category, isParent) {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
-      const result = JSON.parse(this.response);
-      startDate = new Date().toJSON().slice(0, 10);
-      console.log("../src/libs/getAverageDiscount.php?startDate="+startDate+"&categoryId="+category+"&isParent="+isParent);
-      console.log(result);
+        avgPriceTable = JSON.parse(this.response);
+        console.log(avgPriceTable);
+        getActiveOffers();
     }
-    xhttp.open("GET", "../src/libs/getAverageDiscount.php?startDate="+startDate+"&categoryId="+category+"&isParent="+isParent);
+    xhttp.open("GET", "../src/libs/getAverageDiscount.php?startDate=" + getPreviousMonday() + "&categoryId="+category+"&isParent=" + isParent);
+    xhttp.send();
+}
+
+function getActiveOffers() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        activeOffers = JSON.parse(this.response);
+        console.log(activeOffers);
+        //filter and do next thing
+    }
+    xhttp.open("GET", "../src/libs/getActiveOffers.php?startDate=" + sixDaysBeforePreviousMonday() + "&endDate=" + getNextSunday());
     xhttp.send();
 }
 

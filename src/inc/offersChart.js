@@ -10,13 +10,26 @@ const ctx = document.getElementById("line-chart");
 const today = new Date().getDate() - 1;
 
 function getActiveOffers() {
-    const selectedMonthNum = month.indexOf(selectedMonth)+1
+    const selectedMonthNum = month.indexOf(selectedMonth)+1;
+    let startDate = new Date(selectedYear, selectedMonthNum-1);
+    //Set time diff to midnight to avoid wrong date transformation when using the "toJSON().slice(0, 10)" functionality
+    startDate.setHours(20);
+    startDate.setDate(startDate.getDate() - 6);
+    let endDate = new Date(selectedYear, selectedMonthNum);
+    //Set time diff to midnight to avoid wrong date transformation when using the "toJSON().slice(0, 10)" functionality
+    endDate.setHours(20);
+    endDate.setDate(endDate.getDate() - 1);
+    startDateFormated = startDate.toJSON().slice(0, 10);
+    endDateFormated = endDate.toJSON().slice(0, 10);
+    console.log(startDateFormated, endDateFormated);
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
         activeOffers = JSON.parse(this.response);
+        console.log(activeOffers);
         calculateActiveDates();
     }
-    xhttp.open("GET", "../src/libs/getActiveOffers.php?month=" + selectedMonthNum + "&year=" + selectedYear);
+    //xhttp.open("GET", "../src/libs/getActiveOffers.php?month=" + selectedMonthNum + "&year=" + selectedYear);
+    xhttp.open("GET", "../src/libs/getActiveOffers.php?startDate=" + startDateFormated + "&endDate=" + endDateFormated);
     xhttp.send();
 }
 
