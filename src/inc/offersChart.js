@@ -21,15 +21,13 @@ function getActiveOffers() {
     endDate.setDate(endDate.getDate() - 1);
     startDateFormated = startDate.toJSON().slice(0, 10);
     endDateFormated = endDate.toJSON().slice(0, 10);
-    console.log(startDateFormated, endDateFormated);
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
         activeOffers = JSON.parse(this.response);
-        console.log(activeOffers);
         calculateActiveDates();
     }
     //xhttp.open("GET", "../src/libs/getActiveOffers.php?month=" + selectedMonthNum + "&year=" + selectedYear);
-    xhttp.open("GET", "../src/libs/getActiveOffers.php?startDate=" + startDateFormated + "&endDate=" + endDateFormated);
+    xhttp.open("GET", "../src/libs/getActiveOffers.php?startDate=" + startDateFormated + "&endDate=" + endDateFormated + "&categoryId=ALL&isParent=0");
     xhttp.send();
 }
 

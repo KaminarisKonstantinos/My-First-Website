@@ -10,6 +10,7 @@ const today = new Date().getDate() - 1;
 let data;
 let startDate = new Date();
 console.log(startDate);
+let diffTable = [];
 
 function getCategories() {
     const xhttp = new XMLHttpRequest();
@@ -60,23 +61,27 @@ function chooseSubcategory(value) {
 
 function getPreviousMonday()
 {
-    var prevMonday = startDate;
+    var prevMonday = Object.assign(new Date(), startDate);
     prevMonday.setDate(prevMonday.getDate() - (prevMonday.getDay() + 6) % 7);
-    return prevMonday.toJSON().slice(0, 10);
+    return prevMonday;
 }
 
 function sixDaysBeforePreviousMonday() {
-    var sixDaysBeforePreviousMonday = startDate;
+    var sixDaysBeforePreviousMonday = Object.assign(new Date(), startDate);
     sixDaysBeforePreviousMonday.setDate(sixDaysBeforePreviousMonday.getDate() - (sixDaysBeforePreviousMonday.getDay() + 6) % 7);
     sixDaysBeforePreviousMonday.setDate(sixDaysBeforePreviousMonday.getDate() - 6);
-    return sixDaysBeforePreviousMonday.toJSON().slice(0, 10);
+    return sixDaysBeforePreviousMonday;
 }
 
 function getNextSunday() {
-    var nextSunday = startDate;
+    var nextSunday = Object.assign(new Date(), startDate);
     nextSunday.setDate(nextSunday.getDate() - (nextSunday.getDay() + 6) % 7);
     nextSunday.setDate(nextSunday.getDate() + 6);
-    return nextSunday.toJSON().slice(0, 10);
+    return nextSunday;
+}
+
+function modifyDate(date) {
+    return date.toJSON().slice(0, 10);
 }
 
 function goBackOneWeek() {
@@ -92,21 +97,44 @@ function fillData(category, isParent) {
     xhttp.onload = function() {
         avgPriceTable = JSON.parse(this.response);
         console.log(avgPriceTable);
-        getActiveOffers();
+        getActiveOffers(category, isParent);
     }
-    xhttp.open("GET", "../src/libs/getAverageDiscount.php?startDate=" + getPreviousMonday() + "&categoryId="+category+"&isParent=" + isParent);
+    xhttp.open("GET", "../src/libs/getAverageDiscount.php?startDate=" + modifyDate(getPreviousMonday()) + "&categoryId="+category+"&isParent=" + isParent);
     xhttp.send();
 }
 
-function getActiveOffers() {
+function getActiveOffers(category, isParent) {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
         activeOffers = JSON.parse(this.response);
         console.log(activeOffers);
-        //filter and do next thing
+        calcDiff();
     }
-    xhttp.open("GET", "../src/libs/getActiveOffers.php?startDate=" + sixDaysBeforePreviousMonday() + "&endDate=" + getNextSunday());
+    xhttp.open("GET", "../src/libs/getActiveOffers.php?startDate=" + modifyDate(sixDaysBeforePreviousMonday()) + "&endDate=" + modifyDate(getNextSunday()) + "&categoryId=" + category + "&isParent=" + isParent);
     xhttp.send();
+}
+
+function calcDiff() {
+    let avgPriceDict = Object.assign({}, ...avgPriceTable.map((x) => ({[x.Product_Id]: x.AvgPrice})));
+    console.log(avgPriceDict);
+    //initialize the diffTable array
+    for (let d = getPreviousMonday(); d <= getNextSunday(); d.setDate(d.getDate() + 1)) {
+        let tmp = new Object();
+        tmp.date = new Date(d).getDate();
+        tmp.value = [];
+        diffTable.push(tmp);
+    }
+    //transform diffTable into diffDict
+    let diffDict = Object.assign({}, ...diffTable.map((x) => ({[x.date]: x.value})));
+    console.log(diffDict);
+    for (let d = getPreviousMonday(); d <= getNextSunday(); d.setDate(d.getDate() + 1)) {
+        activeOffers.forEach(minusAvg);
+        function minusAvg(offer) {
+            diffDict[d.getDate()].push(avgPriceDict[offer.Product_Id]-offer.Price);
+        }
+    }
+    console.log(diffDict);
+    //let diffs = map();
 }
 
 function drawChart(category, isParent) {
