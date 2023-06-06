@@ -7,10 +7,11 @@ const ctx = document.getElementById('line-chart');
 const chartPlaceholder = document.getElementById("chartPlaceholder");
 let myChart;
 const today = new Date().getDate() - 1;
-let data;
 let startDate = new Date();
-console.log(startDate);
 let diffTable = [];
+let indexLookUp = [];
+goBackOneWeek();
+
 
 function getCategories() {
     const xhttp = new XMLHttpRequest();
@@ -52,29 +53,30 @@ function chooseCategory(value){
       return;
     }
     fillSubcategories(value);    
-    drawChart(value, 1);
+    getAveragePrices(value, 1);
 }
 
 function chooseSubcategory(value) {
-    drawChart(value, 0);
+    getAveragePrices(value, 0);
 }
 
 function getPreviousMonday()
 {
-    var prevMonday = Object.assign(new Date(), startDate);
+    //var prevMonday = Object.assign(new Date(), startDate);
+    let prevMonday = new Date(startDate);
     prevMonday.setDate(prevMonday.getDate() - (prevMonday.getDay() + 6) % 7);
     return prevMonday;
 }
 
 function sixDaysBeforePreviousMonday() {
-    var sixDaysBeforePreviousMonday = Object.assign(new Date(), startDate);
+    let sixDaysBeforePreviousMonday = new Date(startDate);
     sixDaysBeforePreviousMonday.setDate(sixDaysBeforePreviousMonday.getDate() - (sixDaysBeforePreviousMonday.getDay() + 6) % 7);
     sixDaysBeforePreviousMonday.setDate(sixDaysBeforePreviousMonday.getDate() - 6);
     return sixDaysBeforePreviousMonday;
 }
 
 function getNextSunday() {
-    var nextSunday = Object.assign(new Date(), startDate);
+    let nextSunday = new Date(startDate);
     nextSunday.setDate(nextSunday.getDate() - (nextSunday.getDay() + 6) % 7);
     nextSunday.setDate(nextSunday.getDate() + 6);
     return nextSunday;
@@ -92,11 +94,10 @@ function goForwardOneWeek() {
     startDate.setDate(startDate.getDate() + 7);
 }
 
-function fillData(category, isParent) {
+function getAveragePrices(category, isParent) {
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
         avgPriceTable = JSON.parse(this.response);
-        console.log(avgPriceTable);
         getActiveOffers(category, isParent);
     }
     xhttp.open("GET", "../src/libs/getAverageDiscount.php?startDate=" + modifyDate(getPreviousMonday()) + "&categoryId="+category+"&isParent=" + isParent);
@@ -108,51 +109,63 @@ function getActiveOffers(category, isParent) {
     xhttp.onload = function() {
         activeOffers = JSON.parse(this.response);
         console.log(activeOffers);
-        calcDiff();
+        createData();
     }
     xhttp.open("GET", "../src/libs/getActiveOffers.php?startDate=" + modifyDate(sixDaysBeforePreviousMonday()) + "&endDate=" + modifyDate(getNextSunday()) + "&categoryId=" + category + "&isParent=" + isParent);
     xhttp.send();
 }
 
-function calcDiff() {
+function createData() {
     let avgPriceDict = Object.assign({}, ...avgPriceTable.map((x) => ({[x.Product_Id]: x.AvgPrice})));
     console.log(avgPriceDict);
     //initialize the diffTable array
+    diffTable = [];
+    indexLookUp = [];
+    let index = 0;
     for (let d = getPreviousMonday(); d <= getNextSunday(); d.setDate(d.getDate() + 1)) {
         let tmp = new Object();
+        indexLookUp.push(new Date(d).getDate());
+        tmp.index = index;
         tmp.date = new Date(d).getDate();
         tmp.value = [];
         diffTable.push(tmp);
+        index++;
     }
     //transform diffTable into diffDict
-    let diffDict = Object.assign({}, ...diffTable.map((x) => ({[x.date]: x.value})));
-    console.log(diffDict);
+    let diffDict = Object.assign({}, ...diffTable.map((x) => ({[[x.index]]: {date:x.date, value:x.value}})));
     for (let d = getPreviousMonday(); d <= getNextSunday(); d.setDate(d.getDate() + 1)) {
-        activeOffers.forEach(minusAvg);
-        function minusAvg(offer) {
-            diffDict[d.getDate()].push(avgPriceDict[offer.Product_Id]-offer.Price);
+        let i = indexLookUp.indexOf(d.getDate());
+        activeOffers.forEach(calcDiff);
+        function calcDiff(offer) {
+            if ((d.getTime() >= new Date(offer.Date).getTime() && d.getTime() <= new Date(offer.End_Date).getTime())) {
+                let diff = avgPriceDict[offer.Product_Id]-offer.Price;
+                let ratio = diff/avgPriceDict[offer.Product_Id];
+                let percent = ratio*100;
+                diffDict[i].value.push(percent);
+            }
         }
+        diffDict[i].value = diffDict[i].value.reduce((a, b) => a + b, 0) / diffDict[i].value.length;
     }
     console.log(diffDict);
+    diffTableFinal = Object.values(diffDict);
+    drawChart();
     //let diffs = map();
 }
 
-function drawChart(category, isParent) {
+function drawChart() {
     if(myChart!=null){
         myChart.destroy();
     }
-    fillData(category, isParent);
     const config = {
         type: 'line',
         data: {
-            /*labels: offersPerDayModified.map(row => row.date),
+            labels: diffTableFinal.map(row => row.date),
             datasets: [{ 
-                data: offersPerDayModified.map(row => row.value),
+                data: diffTableFinal.map(row => row.value),
                 label: "Ενεργές προσφορές",
                 borderColor: "#3e95cd",
                 fill: false
-                }
-            ],*/
+                }],
             lineAtIndex: today
         },
         options: {
@@ -160,14 +173,14 @@ function drawChart(category, isParent) {
             scales: {
                 yAxes: [{
                     ticks: {
-                        suggestedMax: 6,
+                        suggestedMax: 100,
                         beginAtZero: true
                     }
                 }]
             },
             title: {
                 display: true,
-                text: 'Πλήθος ενεργών προσφορών ανά ημέρα (' + ')'//selectedMonth + ' ' + selectedYear + ')'
+                text: 'Μέση % έκπτωση ανά ημέρα (από ' + getPreviousMonday().toDateString() + ' έως ' + getNextSunday().toDateString() + ')'
             },
         }
     };
