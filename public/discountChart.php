@@ -56,6 +56,10 @@
             <header id='chartPlaceholder'>Διάλεξε κατηγορία για την εμφάνιση δεδομένων.</header>
             <canvas id="line-chart" maintainAspectRatio=false></canvas>
         </div>
+        <div class='row navButtons' id='navButtons'>
+            <button class='nav-button disabled' id='back' disabled><</button>
+            <button class='nav-button disabled' id='forward' disabled>></button>
+        </div>
     </div>
     <script src="../src/inc/discountChart.js"></script>
 </body>

@@ -9,3 +9,31 @@
     position: relative;
     flex: 1 0 auto;
 }
+
+.nav-button{
+    font-size: 1.1rem;
+    background-color: transparent;
+    border: none;
+    margin: 0.25rem 0.25rem;
+    cursor: pointer;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: .2rem;
+}
+
+.nav-button:not(.disabled):hover {
+    background: var(--primary);
+}
+
+.nav-button:hover {
+    background: unset;
+}
+
+.navButtons {
+    width: calc(100% - 2rem);
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 1rem 0;
+    justify-content: center;
+}

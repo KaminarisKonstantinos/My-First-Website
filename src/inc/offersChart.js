@@ -3,13 +3,15 @@ let offersPerDay = [];
 let offersPerDayModified = [];
 let maxvalue;
 let myChart = null;
+// make a lookup table for months in greek
 const month = ["Ιανουάριος","Φεβρουάριος","Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος"];
 let selectedMonth = month[(new Date().getMonth())];
 let selectedYear = new Date().getFullYear();
 const ctx = document.getElementById("line-chart");
-const today = new Date().getDate() - 1;
+const today = new Date().getDate();
 
 function getActiveOffers() {
+    // calculate the starting and ending date of the given month
     const selectedMonthNum = month.indexOf(selectedMonth)+1;
     let startDate = new Date(selectedYear, selectedMonthNum-1);
     //Set time diff to midnight to avoid wrong date transformation when using the "toJSON().slice(0, 10)" functionality
@@ -19,6 +21,7 @@ function getActiveOffers() {
     //Set time diff to midnight to avoid wrong date transformation when using the "toJSON().slice(0, 10)" functionality
     endDate.setHours(20);
     endDate.setDate(endDate.getDate() - 1);
+    // format dates into database-querry-friendly format
     startDateFormated = startDate.toJSON().slice(0, 10);
     endDateFormated = endDate.toJSON().slice(0, 10);
     const xhttp = new XMLHttpRequest();
@@ -26,14 +29,16 @@ function getActiveOffers() {
         activeOffers = JSON.parse(this.response);
         calculateActiveDates();
     }
-    //xhttp.open("GET", "../src/libs/getActiveOffers.php?month=" + selectedMonthNum + "&year=" + selectedYear);
     xhttp.open("GET", "../src/libs/getActiveOffers.php?startDate=" + startDateFormated + "&endDate=" + endDateFormated + "&categoryId=ALL&isParent=0");
     xhttp.send();
 }
 
+// calculate active offers per day of selected month
 function calculateActiveDates() {
     offersPerDay = [];
+    // use the lookup table to return the selected month in numberical form
     const selectedMonthNum = month.indexOf(selectedMonth)+1;
+    // calculate previous month in numberical form
     const nextMonth = (selectedMonthNum==12)? 01 : selectedMonthNum+1;
     //initialisation at 0
     const initialisationBegin = new Date(selectedYear + '-' + selectedMonthNum + '-01');
@@ -42,7 +47,9 @@ function calculateActiveDates() {
         offersPerDay[i.getDate()] = 0;
     }
 
+    // calculate #offers per day
     activeOffers.forEach ( offer => {
+        // calculate begin and end date of each offer while restricting them in selected month
         let begin = new Date(Math.max.apply(null,[new Date(offer.Date), new Date(selectedYear + '-' + selectedMonthNum + '-01')]));
         let end   = new Date(Math.min.apply(null,[new Date(offer.End_Date), new Date(selectedYear + '-' + nextMonth + '-01')]));
 
@@ -53,6 +60,7 @@ function calculateActiveDates() {
     });
     //Remove first useless empty element
     offersPerDay.shift();
+    // calculate the max value in offersPerDay table
     maxvalue = Math.max.apply(null, offersPerDay);
     //Transform array into array of Objects for chart.js
     offersPerDayModified = [];
@@ -66,6 +74,7 @@ function calculateActiveDates() {
     generateChart();
 }
 
+// fills the year selection dropdown menu
 function fillYears(){
     let tmp = '<option value="" disabled selected hidden>Διάλεξε έτος</option>';
     for (let year=new Date().getFullYear(); year>=2020; year--) {
@@ -75,20 +84,7 @@ function fillYears(){
     fixForms();
 }
 
-const todayLine = {
-    id: 'todayLine',
-    beforeDraw(chart, args, options) {
-        console.log(chart);
-        const {chartArea: { top, right, bottom, left }, chart: {width, height}, scales: {x, y} } = chart;
-        console.log(height);
-        var ctx = chart.chart.ctx;
-        ctx.save();
-        ctx.strokeStyle = 'red';
-        ctx.strokeRect(x.getPixelForTick(4), top, 0, height);
-        ctx.restore();
-    }
-}
-
+// draw a dotted line at "today" if today is visible
 var originalLineDraw = Chart.controllers.line.prototype.draw;
 Chart.helpers.extend(Chart.controllers.line.prototype, {
   draw: function() {
@@ -104,16 +100,42 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
 
       ctx.save();
       ctx.beginPath();
-      ctx.moveTo(xaxis.getPixelForValue(undefined, index), yaxis.top);
+      ctx.moveTo(xaxis.getPixelForValue(index), yaxis.top);
       ctx.setLineDash([10, 5]);
       ctx.strokeStyle = 'red';
-      ctx.lineTo(xaxis.getPixelForValue(undefined, index), yaxis.bottom);
+      ctx.lineTo(xaxis.getPixelForValue(index), yaxis.bottom);
       ctx.stroke();
       ctx.restore();
+    }
+    // make both axiis black
+    if (true) {
+        var xaxis = chart.scales['x-axis-0'];
+        var yaxis = chart.scales['y-axis-0'];
+  
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(xaxis.left, yaxis.getPixelForValue(0));
+        ctx.strokeStyle = 'black';
+        ctx.lineTo(xaxis.right, yaxis.getPixelForValue(0));
+        ctx.stroke();
+        ctx.restore();
+    }
+    if (true) {
+        var xaxis = chart.scales['x-axis-0'];
+        var yaxis = chart.scales['y-axis-0'];
+  
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(xaxis.getPixelForValue('undefined', 0), yaxis.top);
+        ctx.strokeStyle = 'black';
+        ctx.lineTo(xaxis.getPixelForValue('undefined', 0), yaxis.bottom);
+        ctx.stroke();
+        ctx.restore();
     }
   }
 });
 
+// draw the chart
 function generateChart() {
     if(myChart!=null){
         myChart.destroy();
@@ -136,7 +158,7 @@ function generateChart() {
             scales: {
                 yAxes: [{
                     ticks: {
-                        suggestedMax: 6,//maxvalue+1,
+                        suggestedMax: 10,
                         beginAtZero: true
                     }
                 }]
@@ -150,6 +172,7 @@ function generateChart() {
     myChart = new Chart(ctx, config);//create chart
 }
 
+// redraws the chart when user selects diff month or year
 function refreshChart(value, type) {
     if (type == 1) {
         selectedMonth = month[value];
@@ -160,9 +183,10 @@ function refreshChart(value, type) {
     getActiveOffers();
 }
 
+// initialize selected year and month to match current date
 function fixForms() {
     document.getElementById('month').selectedIndex = month.indexOf(selectedMonth)+1;
-    const yearsForm = document.getElementById('year').selectedIndex = 1;
+    document.getElementById('year').selectedIndex = 1;
 }
   
 getActiveOffers();
