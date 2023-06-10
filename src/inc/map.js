@@ -7,6 +7,7 @@ let categories;
 let visibleNPois;
 let visibleCPois;
 let categoryFilter = 0;
+let isAdmin = 0;
 
 //I got this from StackOverflow :)
 function distanceInMBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
@@ -29,6 +30,20 @@ function degreesToRadians(degrees) {
   return degrees * Math.PI / 180;
 }
 
+//Checks if current user is Admin or not
+function checkIfAdmin() {
+  $.ajax({
+    type: 'POST',
+    dataType: "json",
+    url:'../src/libs/checkAdmin.php',
+    success: function(data)
+    {
+      isAdmin = data.isAdmin;
+      markerPlacement();
+    }
+  });
+}
+
 //Get location of user
 function getLocation() {
   if (navigator.geolocation) {
@@ -43,7 +58,7 @@ function getOffersTable() {
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function() {
     offers = JSON.parse(this.response);
-    markerPlacement();
+    checkIfAdmin();
   }
   xhttp.open("GET", "../src/libs/getoffers.php");
   xhttp.send();
@@ -63,13 +78,12 @@ function markerPlacement() {
       htmltext = "<div class=\"row\"><div class=\"col-12 col-l-12 col-m-12 col-s-12\"><table><thead><tr><h2>" + poi["Poi_Name"] + "</h2></tr>";
       //Create space for buttons
       htmltext += "<div class=\"row\"><div class=\"col-12 col-l-12 col-m-12 col-s-12 popup-button-section\" id = buttons" + poi["Poi_Id"] + "></div></div>"
-      poi["popup"] = poi["marker"].bindPopup(createPopup(poi), {maxWidth: 1100, maxHeight:400}).on("popupopen", () => {
+      poi["popup"] = poi["marker"].bindPopup(createPopup(poi), {maxWidth: 1200, maxHeight:400}).on("popupopen", () => {
         let buttonContainer = document.getElementById("buttons" + poi["Poi_Id"]);
 ////////////////////////////////////////Use the correct if before sumbitting the project please :)
-        //if (userPosition && distanceInMBetweenEarthCoordinates(poi["Latitude"], poi["Longitude"], userPosition.coords.latitude, userPosition.coords.longitude) <= 5) {
-        if(userPosition && distanceInMBetweenEarthCoordinates(poi["Latitude"], poi["Longitude"], 38.248395, 21.738489) <= 50) {
+        //if ((userPosition && distanceInMBetweenEarthCoordinates(poi["Latitude"], poi["Longitude"], userPosition.coords.latitude, userPosition.coords.longitude) <= 50) || isAdmin) {
+        if((userPosition && distanceInMBetweenEarthCoordinates(poi["Latitude"], poi["Longitude"], 38.248395, 21.738489) <= 50) || isAdmin) {
           //Add buttons if poi within 50 meters
-          let buttonContainer = document.getElementById("buttons" + poi["Poi_Id"]);
           if (poi["offerFlag"]) {
             buttonContainer.innerHTML = "<div class=\"box centeralign\"><button class=\"popupbutton\" type=\"button\" onclick=\"location.href='./rating.php?poiId=" + poi["Poi_Id"] + "'\">Αξιολόγηση</button><button class=\"popupbutton\" type=\"button\" onclick=\"location.href='./addOffer.php?poiId=" + poi["Poi_Id"] + "'\">Προσθήκη Προσφοράς</button></div>";
           }
@@ -77,9 +91,10 @@ function markerPlacement() {
             buttonContainer.innerHTML = "<div class=\"box centeralign\"><button class=\"popupbutton\" type=\"button\" onclick=\"location.href='./addOffer.php?poiId=" + poi["Poi_Id"] + "'\">Προσθήκη Προσφοράς</button></div>";
           }
         }
+        // more than 50 meters away
         else {
           buttonContainer.style.position = "absolute";
-          buttonContainer.style.clip = "rect(0 0 0 0)";
+          buttonContainer.style.display = 'none';
         }
       });
     }
@@ -102,7 +117,11 @@ function createPopup(poi){
   }
   else{
     poi["offerFlag"]=1;
-    htmltext += "<tr><th>ΠΡΟΪΟΝ</th><th>ΤΙΜΗ</th><th>ΚΡΙΤΗΡΙΟ ΜΕΡΑΣ</th><th>ΚΡΙΤΗΡΙΟ ΕΒΔΟΜΑΔΑΣ</th><th>ΗΜΕΡΟΜΗΝΙΑ ΚΑΤΑΧΩΡΙΣΗΣ</th><th>LIKES</th><th>DISLIKES</th><th>ΑΠΟΘΕΜΑ</th></tr></thead><tbody>";
+    htmltext += "<tr><th>ΠΡΟΪΟΝ</th><th>ΤΙΜΗ</th><th>ΚΡΙΤΗΡΙΟ ΜΕΡΑΣ</th><th>ΚΡΙΤΗΡΙΟ ΕΒΔΟΜΑΔΑΣ</th><th>ΗΜΕΡΟΜΗΝΙΑ ΚΑΤΑΧΩΡΙΣΗΣ</th><th>LIKES</th><th>DISLIKES</th><th>ΑΠΟΘΕΜΑ</th>";
+    if (isAdmin) {
+      htmltext += "<th>ΔΙΑΓΡΑΦΗ</th>";
+    }
+    htmltext += "</tr></thead><tbody>";
     offersByPoi.forEach(fillPopup);
     offersByPoi.forEach(fillPopup);
     offersByPoi.forEach(fillPopup);
@@ -131,15 +150,27 @@ function createPopup(poi){
       }
       htmltext += "<td data-label=\"ΗΜΕΡΟΜΗΝΙΑ ΚΑΤΑΧΩΡΙΣΗΣ\">" + offer["Date"] + "</td><td data-label=\"LIKES\">" + offer["Likes"] + "</td><td data-label=\"DISLIKES\">" + offer["Dislikes"] + "</td>"
       if (offer["Has_Stock"]) {
-        htmltext += "<td data-label=\"ΑΠΟΘΕΜΑ\">ΝΑΙ</td></tr>";
+        htmltext += "<td data-label=\"ΑΠΟΘΕΜΑ\">ΝΑΙ</td>";
       }
       else {
-        htmltext += "<td data-label=\"ΑΠΟΘΕΜΑ\">ΟΧΙ</td></tr>";
+        htmltext += "<td data-label=\"ΑΠΟΘΕΜΑ\">ΟΧΙ</td>";
       }
+      if (isAdmin) {
+        htmltext += "<td data-label=\"ΔΙΑΓΡΑΦΗ\"><button class='deleteButton' id='" + offer.Offer_Id + "' onclick='deteleOffer(" + offer.Offer_Id + ");'>x</button></td>";
+      }
+      htmltext += "</tr>";
     }
-    htmltext += "</tr></tbody></table></div></div>";
+    htmltext += "</tbody></table></div></div>";
   }
   return htmltext;
+}
+
+//deletes selected offer from database
+function deteleOffer(offerId) {
+  $.post( "../src/libs/deleteOffer.php", { offer_Id: offerId } );
+  let button = document.getElementById(offerId);
+  button.classList.add("disabled");
+  button.setAttribute("disabled", true);
 }
 
 //Recenter map at user location

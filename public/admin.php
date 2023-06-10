@@ -120,7 +120,7 @@
                     <button class='item1' onclick="window.location.href='./offersChart.php'">Πλήθος προσφορών ανά μέρα</button>
                     <button class='item2' onclick="window.location.href='./discountChart.php'">Μέση έκπτωση ανά κατηγορία</button>
                     <button class='item3' onclick="window.location.href='./leaderboard.php'">Leaderboard</button>
-                    <button class='item4'>Χάρτης</button>
+                    <button class='item4' onclick="window.location.href='./map.php'">Χάρτης</button>
                 </div>
             </div>
         </div>
