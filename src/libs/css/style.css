@@ -5,7 +5,7 @@
 
 html {
     height: 100%;
-  }
+}
 
 body {
     background-color: #2d2d38;
@@ -42,7 +42,7 @@ p{
     text-align: center;
 }
 
-.rating tbody tr :hover{
+.rating tbody tr:hover{
     cursor: pointer;
 }
 

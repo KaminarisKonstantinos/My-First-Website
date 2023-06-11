@@ -38,8 +38,8 @@ function calculateActiveDates() {
     offersPerDay = [];
     // use the lookup table to return the selected month in numberical form
     const selectedMonthNum = month.indexOf(selectedMonth)+1;
-    // calculate previous month in numberical form
-    const nextMonth = (selectedMonthNum==12)? 01 : selectedMonthNum+1;
+    // calculate next month in numberical form
+    const nextMonth = (selectedMonthNum==12)? '01' : selectedMonthNum+1;
     //initialisation at 0
     const initialisationBegin = new Date(selectedYear + '-' + selectedMonthNum + '-01');
     const initialisationEnd = new Date(selectedYear + '-' + nextMonth + '-01');

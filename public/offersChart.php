@@ -52,7 +52,7 @@
             <div class="col-1 col-m-1 col-s-9 blank">
             </div>
             <div class="col-2 col-m-12 col-s-12">
-            <form name="form1" id="form1" method="post">
+                <form name="form1" id="form1" method="post">
                     <select name="option" id="option" onchange="window.location.href=this.value;">
                         <option value="" disabled selected hidden>
                             <?php  
