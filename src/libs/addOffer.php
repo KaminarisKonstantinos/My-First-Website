@@ -46,6 +46,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 $weekCheck = true;
 while($row = $result->fetch_assoc()) {
+  if ($row['Price'] == NULL) break;
   $weekCheck = ($_POST['price'] < round(0.8 * $row['Price'], 2));
   break;
 }
