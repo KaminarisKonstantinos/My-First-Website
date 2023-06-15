@@ -1,6 +1,7 @@
 <?php
 session_start();
-include '../src/libs/connection.php';
+include 'D:\xamp\htdocs\Web22-23\src\libs\connection.php';
+
 $output = [];
 $reactivateTable = [];
 $deactivateTable = [];
