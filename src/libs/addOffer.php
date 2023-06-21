@@ -4,7 +4,7 @@ include '../libs/connection.php';
 // Now we check if the data was submitted, isset() function will check if the data exists.
 if (!isset($_POST['product'], $_POST['price'])) {
 	// Could not get the data that should have been sent.
-  $_SESSION['error'] = 'Data could not be sent, please try again.';
+  $_SESSION['error'] = 'Πρόβλημα με την αποστολή δεδομένων, προσπαθήστε ξανά.';
   header('Location: ../../public/addOffer.php?poiId=' . $_GET['poiId']);
   $con->close();
   exit;
@@ -12,14 +12,14 @@ if (!isset($_POST['product'], $_POST['price'])) {
 // Make sure the submitted registration values are not empty.
 if (empty($_POST['product']) || empty($_POST['price'])) {
 	// One or more values are empty.
- 	$_SESSION['error'] = 'Please fill in all fields.';
+ 	$_SESSION['error'] = 'Παρακαλώ συμπληρώστε όλα τα πεδία.';
 	header('Location: ../../public/addOffer.php?poiId=' . $_GET['poiId']);
 	$con->close();
   exit;
 }
 //Make sure the user entered a numeric price
 if (!is_numeric($_POST['price'])) {
- 	$_SESSION['error'] = 'Please enter a valid price.';
+ 	$_SESSION['error'] = 'Παρακαλώ εισάγετε αποδεκτή τιμή σε ευρώ.';
 	header('Location: ../../public/addOffer.php?poiId=' . $_GET['poiId']);
 	$con->close();
   exit;

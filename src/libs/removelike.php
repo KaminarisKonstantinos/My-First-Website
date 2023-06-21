@@ -10,7 +10,7 @@ $stmt->bind_param("i", $_GET['offer_Id']);
 $stmt->execute();
 $stmt->close();
 
-$sql = "DELETE FROM ratings WHERE Offer_Id = ? AND User_Id = ? ;";
+$sql = "DELETE FROM ratings WHERE User_Id = ? AND Offer_Id = ? ;";
 
 $stmt = $con->prepare($sql);
 $stmt->bind_param("ii", $_GET['offer_Id'], $_SESSION['userId']);

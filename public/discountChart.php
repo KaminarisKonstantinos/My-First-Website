@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../src/libs/css/style.css">
     <link rel="stylesheet" href="../src/libs/css/style1.css">
     <link rel="stylesheet" href="../src/libs/css/discountChart.css">
-    <title>Discount Chart</title>
+    <title>Γράφημα μέσης έκπτωσης</title>
 </head>
 <body>
     <div class='box' id='box'>
@@ -46,8 +46,8 @@
                                 echo $_SESSION['username'];
                             ?>
                         </option>
-                        <option value="./admin.php">Main Admin</option>
-                        <option value="../src/libs/logout.php">Logout</option>
+                        <option value="./admin.php">Αρχική</option>
+                        <option value="../src/libs/logout.php">Αποσύνδεση</option>
                     </select>
                 </form>
             </div>

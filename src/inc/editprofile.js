@@ -19,8 +19,8 @@ function getScoreAndTokens() {
 function updateScoreAndTokens(){
     document.getElementById("monthlyScore").innerHTML = "Μηνιαίο <br>Σκορ: <p>" + userStats[0]['Monthly_Score'] + "</p>";
     document.getElementById("globalScore").innerHTML = "Συνολικό <br>Σκορ: <p>" + userStats[0]['Global_Score'] + "</p>";
-    document.getElementById("monthlyTokens").innerHTML = "Μηνιαία <br>Tokens: <p>" + userStats[0]['Monthly_Tokens'] + "</p>";
-    document.getElementById("globalTokens").innerHTML = "Συνολικά <br>Tokens: <p>" + userStats[0]['Global_Tokens'] + "</p>";
+    document.getElementById("monthlyTokens").innerHTML = "Μηνιαίοι <br>Πόντοι: <p>" + userStats[0]['Monthly_Tokens'] + "</p>";
+    document.getElementById("globalTokens").innerHTML = "Συνολικοί <br>Πόντοι: <p>" + userStats[0]['Global_Tokens'] + "</p>";
 }
 
 function getUserOffers() {

@@ -41,7 +41,7 @@
                             ?>
                         </option>
                         <option value="./map.php">Χάρτης</option>
-                        <option value="../src/libs/logout.php">Logout</option>
+                        <option value="../src/libs/logout.php">Αποσύνδεση</option>
                     </select>
                 </form>
             </div>
@@ -53,9 +53,10 @@
                 <div>
                     <main>
                     <form action="../src/libs/changeusername.php" method="post">
-                        <h1>Αλλαγή Username</h1>
+                        <h1>Αλλαγή ονόματος χρήστη</h1>
+                        <br>
                         <div>
-                            <label for="username">Νέο username:</label>
+                            <label for="username">Νέο όνομα χρήστη:</label>
                             <input type="text" name="username" id="username" placeholder="<?php echo $_SESSION['username']?>">
                         </div>
                         <?php
@@ -73,17 +74,18 @@
                     <button type="submit">Αποθήκευση</button>
                     </form>
                     <form action="../src/libs/changepassword.php" method="post">
-                        <h1>Αλλαγή Password</h1>
+                        <h1>Αλλαγή κωδικού</h1>
+                        <br>
                         <div>
-                            <label for="oldpassword">Τρέχον password:</label>
+                            <label for="oldpassword">Τρέχων κωδικός:</label>
                             <input type="password" name="oldpassword" id="oldpassword">
                         </div>
                         <div>
-                            <label for="password">Νέο password:</label>
+                            <label for="password">Νέος κωδικός:</label>
                             <input type="password" name="password" id="password">
                         </div>
                         <div>
-                            <label for="password2">Επανάληψη password:</label>
+                            <label for="password2">Επανάληψη κωδικού:</label>
                             <input type="password" name="password2" id="password2">
                         </div>
                         <?php

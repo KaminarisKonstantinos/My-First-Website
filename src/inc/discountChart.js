@@ -248,8 +248,8 @@ function drawChart() {
         data: {
             labels: diffTableFinal.map(row => row.date),
             datasets: [{ 
-                data: diffTableFinal.map(row => row.value),
-                label: "Ενεργές προσφορές",
+                data: diffTableFinal.map(row => Math.round(row.value*10)/10),
+                label: "Μέση % έκπτωση",
                 borderColor: "#3e95cd",
                 fill: false
                 }],

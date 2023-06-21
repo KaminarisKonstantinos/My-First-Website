@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://www.phptutorial.net/app/css/style.css">
     <link rel="stylesheet" href="../src/libs/css/style.css">
     <link rel="stylesheet" href="../src/libs/css/style1.css">
-    <title>Register</title>
+    <title>Δημιουργία λογαριασμού</title>
 </head>
 <body>
 <div class="row nav-bar">
@@ -22,21 +22,22 @@
     <div class="col-4 col-l-6 col-m-6 col-s-8">   
         <main>
             <form action="../src/libs/registeraction.php" method="post">
-                <h1>Sign Up</h1>
+                <h1>Δημιουργία λογαριασμού</h1>
+                <br>
                 <div>
-                    <label for="username">Username:</label>
+                    <label for="username">Όνομα χρήστη:</label>
                     <input type="text" name="username" id="username">
                 </div>
                 <div>
-                    <label for="email">Email:</label>
+                    <label for="email">E-mail:</label>
                     <input type="email" name="email" id="email">
                 </div>
                 <div>
-                    <label for="password">Password:</label>
+                    <label for="password">Κωδικός:</label>
                     <input type="password" name="password" id="password">
                 </div>
                 <div>
-                    <label for="password2">Password Again:</label>
+                    <label for="password2">Επανάληψη κωδικού:</label>
                     <input type="password" name="password2" id="password2">
                 </div>
                 <?php
@@ -52,8 +53,8 @@
                 <?php
                     }
                 ?>
-                <button type="submit">Register</button>
-                <footer>Already a member? <a href="login.php">Login here</a></footer>
+                <button type="submit">Εγγραφή</button>
+                <footer>Έχετε ήδη λογαριασμό; <a href="login.php">Συνδεθείτε εδώ!</a></footer>
             </form>
         </main>
     </div>

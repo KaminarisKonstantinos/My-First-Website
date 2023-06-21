@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../src/libs/css/style.css">
     <link rel="stylesheet" href="../src/libs/css/style1.css">
     <link rel="stylesheet" href="../src/libs/css/admin.css">
-    <title>Admin</title> 
+    <title>Διαχειριστής</title> 
 </head>
 <body>
     <div class="box">
@@ -34,7 +34,7 @@
                                 echo $_SESSION['username'];
                             ?>
                         </option>
-                        <option value="../src/libs/logout.php">Logout</option>
+                        <option value="../src/libs/logout.php">Αποσύνδεση</option>
                     </select>
                 </form>
             </div>

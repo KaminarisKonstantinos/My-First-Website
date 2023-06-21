@@ -33,8 +33,8 @@
                                 echo $_SESSION['username'];
                             ?>
                         </option>
-                        <option value="./admin.php">Main Admin</option>
-                        <option value="../src/libs/logout.php">Logout</option>
+                        <option value="./admin.php">Αρχική</option>
+                        <option value="../src/libs/logout.php">Αποσύνδεση</option>
                     </select>
                 </form>
             </div>
@@ -45,10 +45,10 @@
             <table id="paginated-table">
                 <thead id="thead">
                     <tr>
-                        <th>Username</th>
-                        <th>Global Score</th>
-                        <th>Monthly Tokens</th>
-                        <th>Global Tokens</th>
+                        <th>Όνομα χρήστη</th>
+                        <th>Συνολικό σκορ</th>
+                        <th>Μηνιαίοι πόντοι</th>
+                        <th>Συνολικοί πόντοι</th>
                     </tr>
                 </thead>
                 <tbody id="tbody">

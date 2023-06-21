@@ -39,7 +39,7 @@
                         </option>
                         <option value="./map.php">Χάρτης</option>
                         <option value="./editprofile.php">Επεξεργασία Προφίλ</option>
-                        <option value="../src/libs/logout.php">Logout</option>
+                        <option value="../src/libs/logout.php">Αποσύνδεση</option>
                     </select>
                 </form>
             </div>

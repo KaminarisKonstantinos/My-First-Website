@@ -149,7 +149,7 @@ function fillAndOpenPopup(offer) {
 
     offerText += "<div class=\"col-6 col-m-6 col-s-6\"><button class=\"popupbutton like\" type=\"button\" id=\"likeButton\"><img class=\"ratingimage\" src=\"../src/like.png\" alt=\"Like\"/></button><button class=\"popupbutton dislike\" type=\"button\" id=\"dislikeButton\"><img class=\"ratingimage\" src=\"../src/dislike.png\" alt=\"Dislike\"/></button></div>";
 
-    offerText += "<div class=\"col-6 col-m-6 col-s-6\"><button class=\"popupbutton\" type=\"button\" id=\"stockButton\">Out of Stock</button></div>";
+    offerText += "<div class=\"col-6 col-m-6 col-s-6\"><button class=\"popupbutton\" type=\"button\" id=\"stockButton\">Εκτός αποθέματος</button></div>";
 
     document.getElementById("offerDetails").innerHTML = offerText;
 
@@ -162,17 +162,17 @@ function fillAndOpenPopup(offer) {
     document.getElementById("stockButton").onclick = function () { 
         if (offerElement['Has_Stock']) {
             offerElement['Has_Stock'] = !offerElement['Has_Stock'];
-            document.getElementById("stockButton").innerHTML = "In Stock";
+            document.getElementById("stockButton").innerHTML = "Σε απόθεμα";
         }
         else {
             offerElement['Has_Stock'] = !offerElement['Has_Stock'];
-            document.getElementById("stockButton").innerHTML = "Out of Stock";
+            document.getElementById("stockButton").innerHTML = "Εκτός αποθέματος";
         }
         swapStock(offerId, offerElement['Has_Stock']);
     };
 
     if (!offerElement['Has_Stock']) {
-        document.getElementById("stockButton").innerHTML = "In Stock";
+        document.getElementById("stockButton").innerHTML = "Σε απόθεμα";
         document.getElementById("likeButton").disabled = true;
         document.getElementById("likeButton").classList.add('outOfStock');
         document.getElementById("dislikeButton").disabled = true;

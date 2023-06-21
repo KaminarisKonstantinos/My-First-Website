@@ -4,7 +4,7 @@ include '../libs/connection.php';
 //We check if the data was submitted, isset() function will check if the data exists.
 if (!isset($_POST['username'], $_POST['password'])) {
 	// Could not get the data that should have been sent.
-  $_SESSION['error'] = 'Data could not be sent, please try again.';
+  $_SESSION['error'] = 'Πρόβλημα με την αποστολή δεδομένων, προσπαθήστε ξανά.';
   header('Location: ../../public/login.php');
   $con->close();
   exit;
@@ -12,7 +12,7 @@ if (!isset($_POST['username'], $_POST['password'])) {
 // Make sure the submitted registration values are not empty.
 if (empty($_POST['username']) || empty($_POST['password'])) {
 	// One or more values are empty.
-  $_SESSION['error'] = 'Please fill in all fields.';
+  $_SESSION['error'] = 'Παρακαλώ συμπληρώστε όλα τα πεδία.';
   header('Location: ../../public/login.php');
   $con->close();
   exit;
@@ -25,7 +25,7 @@ if ($stmt = $con->prepare('SELECT user_id, password, is_admin FROM users WHERE u
     $result = $stmt->get_result();
     if (!$result->num_rows > 0) {
 		// Username doesn't exist
-		$_SESSION['error'] = 'Username doesn\'t exist. Please try again.';
+		$_SESSION['error'] = 'Το όνομα χρήστη δε βρέθηκε. Παρακαλώ προσπαθήστε ξανά.';
 	  header('Location: ../../public/login.php');
     $stmt->close();
     $con->close();
@@ -36,7 +36,7 @@ if ($stmt = $con->prepare('SELECT user_id, password, is_admin FROM users WHERE u
         while($row = $result->fetch_assoc()) {
             if(!password_verify($_POST['password'], $row['password'])){
                 // Wrong password
-		          $_SESSION['error'] = 'Wrong password. Please try again.';
+		          $_SESSION['error'] = 'Λάθος κωδικός. Παρακαλώ προσπαθήστε ξανά.';
                 header('Location: ../../public/login.php');
                 $stmt->close();
                 $con->close();

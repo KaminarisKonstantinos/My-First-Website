@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.phptutorial.net/app/css/style.css">
 
-    <title>Map</title>
+    <title>Χάρτης</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
      crossorigin=""/>
@@ -59,7 +59,7 @@
                         <?php  
                                 if ($_SESSION['isAdmin']) {
                         ?>
-                        <option value="./admin.php">Main Admin</option>
+                        <option value="./admin.php">Αρχική</option>
                         <?php  
                                 } else {
                         ?>
@@ -67,7 +67,7 @@
                         <?php  
                                 }
                         ?>
-                        <option value="../src/libs/logout.php">Logout</option>
+                        <option value="../src/libs/logout.php">Αποσύνδεση</option>
                     </select>
                 </form>
             </div>

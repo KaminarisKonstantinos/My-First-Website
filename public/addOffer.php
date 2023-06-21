@@ -37,7 +37,7 @@
                         </option>
                         <option value="./map.php">Χάρτης</option>
                         <option value="./editprofile.php">Επεξεργασία Προφίλ</option>
-                        <option value="../src/libs/logout.php">Logout</option>
+                        <option value="../src/libs/logout.php">Αποσύνδεση</option>
                     </select>
                 </form>
             </div>
@@ -84,7 +84,7 @@
                                 <input type="text" name="product" id="product" hidden>
                             </div>
                             <div>
-                                <label for="price">Τιμή:</label>
+                                <label for="price">Τιμή (σε €):</label>
                                 <input type="text" name="price" id="price">
                             </div>
                             <?php
