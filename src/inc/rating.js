@@ -24,14 +24,6 @@ function getOffersTable() {
 function fillOffersTable() {
     offersText = "<table><h2>ΠΡΟΣΦΟΡΕΣ " + poioffers[0]["Poi_Name"] + "</h2><br><thead><tr><th>ΠΡΟΪΟΝ</th><th>ΤΙΜΗ</th><th>ΚΡΙΤΗΡΙΟ ΜΕΡΑΣ</th><th>ΚΡΙΤΗΡΙΟ ΕΒΔΟΜΑΔΑΣ</th><th>ΗΜΕΡΟΜΗΝΙΑ ΚΑΤΑΧΩΡΙΣΗΣ</th><th>LIKES</th><th>DISLIKES</th><th>ΑΠΟΘΕΜΑ</th></tr></thead><tbody>";
     poioffers.forEach(fillTable);
-    poioffers.forEach(fillTable);
-    poioffers.forEach(fillTable);
-    poioffers.forEach(fillTable);
-    poioffers.forEach(fillTable);
-    poioffers.forEach(fillTable);
-    poioffers.forEach(fillTable);
-    poioffers.forEach(fillTable);
-    poioffers.forEach(fillTable);
     function fillTable(offer){
         const offerId = poioffers.indexOf(offer);
         offersText += "<tr onclick=fillAndOpenPopup(" + offerId + ")><td data-label=\"ΠΡΟΪΟΝ\">" + offer["Product_Name"] + "</td><td data-label=\"ΤΙΜΗ\">" + offer["Price"] + " Ευρώ</td>";

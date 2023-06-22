@@ -13,7 +13,7 @@ $stmt->close();
 $sql = "DELETE FROM ratings WHERE User_Id = ? AND Offer_Id = ? ;";
 
 $stmt = $con->prepare($sql);
-$stmt->bind_param("ii", $_GET['offer_Id'], $_SESSION['userId']);
+$stmt->bind_param("ii", $_SESSION['userId'], $_GET['offer_Id']);
 $stmt->execute();
 $stmt->close();
 

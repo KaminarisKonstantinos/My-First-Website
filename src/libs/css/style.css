@@ -191,6 +191,7 @@ opacity: 1;
 
 .popup:target ~ .row{
     overflow-y: hidden;
+    visibility: hidden;
 }
 
 .popup table {

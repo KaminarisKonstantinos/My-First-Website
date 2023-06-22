@@ -82,7 +82,7 @@ function markerPlacement() {
         let buttonContainer = document.getElementById("buttons" + poi["Poi_Id"]);
 ////////////////////////////////////////Use the correct if before sumbitting the project please :)
         //if ((userPosition && distanceInMBetweenEarthCoordinates(poi["Latitude"], poi["Longitude"], userPosition.coords.latitude, userPosition.coords.longitude) <= 50) || isAdmin) {
-        if((userPosition && distanceInMBetweenEarthCoordinates(poi["Latitude"], poi["Longitude"], 38.248395, 21.738489) <= 50) || isAdmin) {
+        if((userPosition && distanceInMBetweenEarthCoordinates(poi["Latitude"], poi["Longitude"], 38.248505, 21.738636) <= 50) || isAdmin) {
           //Add buttons if poi within 50 meters
           if (poi["offerFlag"]) {
             buttonContainer.innerHTML = "<div class=\"box centeralign\"><button class=\"popupbutton\" type=\"button\" onclick=\"location.href='./rating.php?poiId=" + poi["Poi_Id"] + "'\">Αξιολόγηση</button><button class=\"popupbutton\" type=\"button\" onclick=\"location.href='./addOffer.php?poiId=" + poi["Poi_Id"] + "'\">Προσθήκη Προσφοράς</button></div>";
@@ -122,17 +122,6 @@ function createPopup(poi){
       htmltext += "<th>ΔΙΑΓΡΑΦΗ</th>";
     }
     htmltext += "</tr></thead><tbody>";
-    offersByPoi.forEach(fillPopup);
-    offersByPoi.forEach(fillPopup);
-    offersByPoi.forEach(fillPopup);
-    offersByPoi.forEach(fillPopup);
-    offersByPoi.forEach(fillPopup);
-    offersByPoi.forEach(fillPopup);
-    offersByPoi.forEach(fillPopup);
-    offersByPoi.forEach(fillPopup);
-    offersByPoi.forEach(fillPopup);
-    offersByPoi.forEach(fillPopup);
-    offersByPoi.forEach(fillPopup);
     offersByPoi.forEach(fillPopup);
     function fillPopup(offer){
       htmltext += "<tr><td data-label=\"ΠΡΟΪΟΝ\">" + offer["Product_Name"] + "</td><td data-label=\"ΤΙΜΗ\">" + offer["Price"] + " Ευρώ</td>";
@@ -178,15 +167,15 @@ function mapRecenter(position) {
   userPosition = position;
 ////////////////////////////////////////////////Use correct panTo please :)
   //map.panTo(new L.LatLng(position.coords.latitude, position.coords.longitude));
-  map.setView(new L.LatLng(38.248395, 21.738489), 17);
+  map.setView(new L.LatLng(38.248505, 21.738636), 17);
   //var circle = L.circle([position.coords.latitude, position.coords.longitude], {
-  var circle = L.circle([38.248395, 21.738489], {
+  var circle = L.circle([38.248505, 21.738636], {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
     radius: 50
   }).addTo(map);
-  var circle = L.circle([38.248395, 21.738489], {
+  var circle = L.circle([38.248505, 21.738636], {
     color: 'black',
     fillColor: 'black',
     fillOpacity: 1,
@@ -199,7 +188,7 @@ function mapRecenter1() {
 ////////////////////////////////////////////////////fix
   //map.panTo(new L.LatLng(userPosition.coords.latitude, userPosition.coords.longitude));
   if (userPosition) {
-    map.setView(new L.LatLng(38.248395, 21.738489), 17);
+    map.setView(new L.LatLng(38.248505, 21.738636), 17);
   }
 }
 

@@ -43,11 +43,6 @@ function fillPopup() {
   else {
     offersText = "<a class=\"close\" href=\"#\"></a><br><table><h2>ΙΣΤΟΡΙΚΟ ΠΡΟΣΦΟΡΩΝ</h2><br><thead><tr><th>ΚΑΤΑΣΤΗΜΑ</th><th>ΠΡΟΪΟΝ</th><th>ΚΑΤΗΓΟΡΙΑ ΠΡΟΪΟΝΤΟΣ</th><th>ΤΙΜΗ</th><th>ΚΡΙΤΗΡΙΟ ΜΕΡΑΣ</th><th>ΚΡΙΤΗΡΙΟ ΕΒΔΟΜΑΔΑΣ</th><th>ΗΜΕΡΟΜΗΝΙΑ ΚΑΤΑΧΩΡΙΣΗΣ</th><th>LIKES</th><th>DISLIKES</th><th>ΠΡΟΣΦΟΡΑ ΕΝΕΡΓΗ</th><th>ΑΠΟΘΕΜΑ</th></tr></thead><tbody>";
     userOffers.forEach(fillTable);
-    userOffers.forEach(fillTable);
-    userOffers.forEach(fillTable);
-    userOffers.forEach(fillTable);
-    userOffers.forEach(fillTable);
-    userOffers.forEach(fillTable);
     function fillTable(offer){
       offersText += "<tr><td data-label=\"ΚΑΤΑΣΤΗΜΑ\">" + offer["Poi_Name"] + "</td><td data-label=\"ΠΡΟΪΟΝ\">" + offer["Product_Name"] + "</td><td data-label=\"ΚΑΤΗΓΟΡΙΑ ΠΡΟΪΟΝΤΟΣ\">" + offer["Category_Name"] + "</td><td data-label=\"ΤΙΜΗ\">" + offer["Price"] + " Ευρώ</td>";
       if (offer["Day_Check"]) {
@@ -99,36 +94,6 @@ function fillPopup2 () {
   //Αν υπάρχουν 
   else {
     likesText = "<a class=\"close\" href=\"#\"></a><br><table><h2>ΙΣΤΟΡΙΚΟ LIKES/DISLIKES</h2><br><thead><tr><th>ΚΑΤΑΣΤΗΜΑ</th><th>ΠΡΟΪΟΝ</th><th>ΚΑΤΗΓΟΡΙΑ ΠΡΟΪΟΝΤΟΣ</th><th>ΤΙΜΗ</th><th>ΗΜΕΡΟΜΗΝΙΑ ΚΑΤΑΧΩΡΙΣΗΣ</th><th>LIKE/DISLIKE</th><th>ΠΡΟΣΦΟΡΑ ΕΝΕΡΓΗ</th><th>ΑΠΟΘΕΜΑ</th></tr></thead><tbody>";
-    userLikes.forEach(fillTable);
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
-
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
-    userLikes.forEach(fillTable);
-
     userLikes.forEach(fillTable);
 
     function fillTable(offer){
