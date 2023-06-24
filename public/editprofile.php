@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="../src/libs/css/editprofile.css">
     <link rel="stylesheet" href="../src/libs/css/style.css">
     <title>Επεξεργασία Προφίλ</title>
-    <script src="../src/inc/editprofile.js"></script> 
 </head>
 <body>
     <div class="box">
@@ -26,11 +25,11 @@
             <div class="col-12 popuptext" id="likesDislikes">
             </div>
         </div>
-        <div class="row nav-bar">
+        <div class="row nav-bar" id='myTopnav'>
             <div class="col-1 col-m-1 col-s-1">
                 <img class="logo" src="../src/stock_spirits_logo.svg.png" alt="Flowers in Chania">
             </div>
-            <div class="col-9 col-m-9 col-s-9">
+            <div class="col-9 col-m-9 col-s-9 blank">
             </div>
             <div class="col-2 col-m-2 col-s-2">
                 <form name="form1" id="form1" method="post">
@@ -46,7 +45,7 @@
                 </form>
             </div>
         </div>
-        <div class="row">
+        <div class="row editprofile">
             <div class="col-1 col-m-3 col-s-0">
             </div>
             <div class="col-4-5 col-m-6 col-s-12">
@@ -139,7 +138,8 @@
             <div class="col-1 col-m-3 col-s-0">
             </div>
         </div>
-    </div>
+        <script src="../src/inc/editprofile.js"></script>
+    </div> 
 
     <?php
         $con->close();

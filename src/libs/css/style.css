@@ -305,7 +305,8 @@ button[type='button'].outOfStock:hover {
       }
 
     .logo {
-        height: 60px;
+        height: 50px;
+        top: 6px;
         position: relative;
         left: 15px;
     }

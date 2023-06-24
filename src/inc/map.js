@@ -8,6 +8,7 @@ let visibleNPois;
 let visibleCPois;
 let categoryFilter = 0;
 let isAdmin = 0;
+let poiHasOffers;
 
 //I got this from StackOverflow :)
 function distanceInMBetweenEarthCoordinates(lat1, lon1, lat2, lon2) {
@@ -64,6 +65,13 @@ function getOffersTable() {
   xhttp.send();
 }
 
+//hide pois with no offers
+function removeIfNoOffers(poi){
+  if (!poi["offerFlag"]) {
+    poi["marker"].remove();
+  }
+}
+
 //Initial marker placement
 function markerPlacement() {
   const xhttp = new XMLHttpRequest();
@@ -98,6 +106,7 @@ function markerPlacement() {
         }
       });
     }
+    pois.forEach(removeIfNoOffers);
   }
   xhttp.open("GET", "../src/libs/getpoi.php");
   xhttp.send();
@@ -213,6 +222,9 @@ function searchByName(form){
       poi["marker"].addTo(map);
       poi["marker"]._icon.classList.add("huechangeback");
     }
+    if (!categoryFilter) {
+      pois.forEach(removeIfNoOffers);
+    }
     return;
   }
   poisToShow.forEach(showMarkers);
@@ -258,6 +270,9 @@ function chooseCategory(value){
       poi["marker"].addTo(map);
     }
     visibleCPois = pois;
+    if (!nameFilter) {
+      pois.forEach(removeIfNoOffers);
+    }
     return;
   }
   pois.forEach(removeAllMarkers);

@@ -94,6 +94,7 @@ $roundedPrice = round($_POST['price'], 2);
 $stmt->bind_param('sssssss', $_GET['poiId'], $_SESSION['userId'], $_POST['product'], $roundedPrice,$dayCheck, $weekCheck, $endDate);
 $stmt->execute();
 $_SESSION['error'] = 'Η προσφορά καταχωρήθηκε! Ευχαριστούμε πολύ.';
+$score = 0;
 if ($weekCheck) {
   if ($dayCheck) {
     $_SESSION['error'] .= ' Συγχαρητήρια! Βρήκατε πολύ καλή προσφορά και κερδίζετε 70 πόντους! ';

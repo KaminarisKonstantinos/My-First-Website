@@ -1,0 +1,11 @@
+<FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+	Header set Cache-Control "max-age=86400"
+</Filesmatch>
+
+<FilesMatch "\.(js|css)$">
+	Header set Cache-Control "max-age=86400"
+</Filesmatch>
+
+<FilesMatch "\.(php)$">
+	Header set Cache-Control "max-age=300, private"
+</Filesmatch>

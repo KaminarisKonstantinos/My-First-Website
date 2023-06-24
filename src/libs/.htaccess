@@ -1,0 +1,3 @@
+<FilesMatch "\.(php)">
+	Header set Cache-Control "no-cache, private"
+</Filesmatch>

@@ -121,6 +121,16 @@ function fillPopup2 () {
   popup.innerHTML = likesText;
 }
 
+//Responsive navbar
+function responsive() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "row nav-bar") {
+    x.className += " responsive";
+  } else {
+    x.className = "row nav-bar";
+  }
+}
+
 getScoreAndTokens();
 
 getUserOffers();

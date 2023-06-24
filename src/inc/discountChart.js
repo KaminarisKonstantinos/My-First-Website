@@ -200,7 +200,6 @@ Chart.helpers.extend(Chart.controllers.line.prototype, {
       var xaxis = chart.scales['x-axis-0'];
       var yaxis = chart.scales['y-axis-0'];
 
-      console.log(today, xaxis.getPixelForValue(index));
       ctx.save();
       ctx.beginPath();
       ctx.moveTo(xaxis.getPixelForValue(index), yaxis.top);
