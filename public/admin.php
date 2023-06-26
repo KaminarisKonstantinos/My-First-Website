@@ -1,4 +1,5 @@
 <?php
+    header("Cache-Control: no-store, private");
     session_start();
     if (!$_SESSION['userId'] | !$_SESSION['isAdmin']) {
         header('Location: ./');

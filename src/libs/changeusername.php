@@ -4,7 +4,7 @@ include '../libs/connection.php';
 //We check if the data was submitted, isset() function will check if the data exists.
 if (!isset($_POST['username'])) {
 	// Could not get the data that should have been sent.
-  $_SESSION['error'] = 'Data could not be sent, please try again.';
+  $_SESSION['error'] = 'Πρόβλημα με την αποστολή δεδομένων, προσπαθήστε ξανά.';
   header('Location: ../../public/editprofile.php');
   $con->close();
   exit;
@@ -12,7 +12,7 @@ if (!isset($_POST['username'])) {
 // Make sure the submitted registration values are not empty.
 if (empty($_POST['username'])) {
 	// One or more values are empty.
-  $_SESSION['error'] = 'Please fill in all fields.';
+  $_SESSION['error'] = 'Παρακαλώ συμπληρώστε όλα τα πεδία.';
   header('Location: ../../public/editprofile.php');
   $con->close();
   exit;
@@ -25,7 +25,7 @@ if ($stmt = $con->prepare('SELECT user_id FROM users WHERE username = ?')) {
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
 		// Username exists
-		$_SESSION['error'] = 'Username exists. Please try again.';
+		$_SESSION['error'] = 'Το όνομα χρήστη χρησιμοποιείται. Παρακαλώ προσπαθήστε ξανά.';
         header('Location: ../../public/editprofile.php');
         $stmt->close();
         $con->close();
@@ -40,7 +40,7 @@ if ($stmt = $con->prepare('SELECT user_id FROM users WHERE username = ?')) {
 
         //Update session variables
         $_SESSION['username'] = $_POST['username'];
-        $_SESSION['error'] = "Το username σας άλλαξε επιτυχώς.";
+        $_SESSION['error'] = "Το όνομα χρήστη σας άλλαξε επιτυχώς.";
 
         //Redirect
         header('Location: ../../public/editprofile.php');

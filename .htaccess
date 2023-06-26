@@ -1,5 +1,5 @@
 <FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
-	Header set Cache-Control "max-age=86400"
+	Header set Cache-Control "max-age=31356000"
 </Filesmatch>
 
 <FilesMatch "\.(js|css)$">
@@ -7,5 +7,9 @@
 </Filesmatch>
 
 <FilesMatch "\.(php)$">
-	Header set Cache-Control "max-age=300, private"
+	Header set Cache-Control "max-age=180, private"
+</Filesmatch>
+
+<FilesMatch "index.php|login.php|admin.php|addOffer.php">
+	Header set Cache-Control "no-cache, private"
 </Filesmatch>

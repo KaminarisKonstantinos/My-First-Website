@@ -32,7 +32,7 @@ $query = substr($query, 0, -1);
 
 $queryResult = mysqli_multi_query($con, $query);
 
-$_SESSION['error3'] .= ($queryResult) ? 'Pois uploaded successfully' : 'Pois did not upload successfully' ;
+$_SESSION['error3'] .= ($queryResult) ? 'Τα καταστήματα ανέβηκαν με επιτυχία.' : 'Τα καταστήματα δεν ανέβηκαν με επιτυχία. Παρακαλώ προσπαθήστε ξανά.' ;
 
 header('Location: ../public/admin.php');
 

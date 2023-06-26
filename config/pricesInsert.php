@@ -34,7 +34,7 @@ $query .= ' ON DUPLICATE KEY UPDATE price=VALUES(price)';
 // Run the query
 $queryResult = mysqli_multi_query($con, $query);
 
-$_SESSION['error2'] .= ($queryResult) ? 'Prices uploaded successfully' : 'Prices did not upload successfully' ;
+$_SESSION['error2'] .= ($queryResult) ? 'Οι τιμές ανέβηκαν με επιτυχία.' : 'Οι τιμές δεν ανέβηκαν με επιτυχία. Παρακαλώ προσπαθήστε ξανά.' ;
 
 header('Location: ../public/admin.php');
 

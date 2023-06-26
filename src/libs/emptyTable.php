@@ -2,11 +2,11 @@
 include './connection.php';
 session_start();
 
-$query = 'TRUNCATE ';
+$query = 'DELETE FROM ';
 
 switch($_GET['id']) {
     case 1: 
-        $query .= 'categories; TRUNCATE products;';
+        $query .= ' categories; DELETE FROM products;';
         break;
     case 2:
         $query .= 'prices;';
@@ -17,9 +17,10 @@ switch($_GET['id']) {
 }
 
 $queryResult = mysqli_multi_query($con, $query);
+$index = 'error'.$_GET['id'];
 
-$_SESSION['error'.$_GET['id']] .= ($queryResult) ? 'Τα δεδομένα διαγράφηκαν επιτυχώς' : 'Δεν ήταν δυνατή η διαγραφή των δεδομένων' ;
-
+$_SESSION[$index] = ($queryResult) ? 'Τα δεδομένα διαγράφηκαν επιτυχώς' : 'Δεν ήταν δυνατή η διαγραφή των δεδομένων' ;
+var_dump($index, $_SESSION[$index]);
 unset($query);
 
 header('Location: ../../public/admin.php');
