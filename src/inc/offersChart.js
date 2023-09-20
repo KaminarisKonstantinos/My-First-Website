@@ -33,7 +33,7 @@ function getActiveOffers() {
     xhttp.send();
 }
 
-// calculate active offers per day of selected month
+// calculate count of active offers per day of selected month
 function calculateActiveDates() {
     offersPerDay = [];
     // use the lookup table to return the selected month in numberical form
