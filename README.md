@@ -1,4 +1,4 @@
-# First-website
+# best-offer
  web project 2022-2023
  
  Run all the *insert.php(s) from the config file into a database
